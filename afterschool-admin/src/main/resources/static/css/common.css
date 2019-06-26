@@ -1,0 +1,93 @@
+@charset "EUC-KR";
+
+/*******************************************************************************************************
+ Header 디자인
+*******************************************************************************************************/
+.navbar-brand {
+	padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+}
+
+.navbar-brand img {
+	height: 30px;
+}
+
+.navbar-title {
+	font-size: 1.3rem;
+	font-weight: 600;
+}
+
+/*******************************************************************************************************
+ sidebar 디자인
+*******************************************************************************************************/
+.sidebar-dark .nav-sidebar>.nav-item-open>.nav-link:not(.disabled), 
+.sidebar-dark .nav-sidebar>.nav-item>.nav-link.active, 
+.sidebar-light .card[class*=bg-]:not(.bg-light):not(.bg-white):not(.bg-transparent) .nav-sidebar>.nav-item-open>.nav-link:not(.disabled), 
+.sidebar-light .card[class*=bg-]:not(.bg-light):not(.bg-white):not(.bg-transparent) .nav-sidebar>.nav-item>.nav-link.active {
+    background-color: #26a69a !important;
+}
+
+.sidebar-dark .nav-sidebar .nav-item>.nav-link.active {
+	background-color: rgba(0,0,0,.3);
+}
+
+/*******************************************************************************************************
+ content 디자인
+*******************************************************************************************************/
+.page-title {
+	padding: 1.4rem 0;
+}
+
+.page-title i {
+	font-size: 22px;
+	vertical-align: text-top;
+}
+
+/*******************************************************************************************************
+ Table 디자인
+*******************************************************************************************************/
+.table th {
+	font-weight: 600;
+}
+
+.datatable-header {
+	padding-top: 0.5rem;
+}
+
+.datatable-footer {
+    border-top: 1px solid #b7b7b7 !important;
+    margin-top: -1px !important;
+    margin-right: 1px !important;
+}
+
+.dataTables_wrapper .table-bordered {
+	border: 0 !important;
+}
+
+table .tbody-sm td {
+	padding: .65rem 1.25rem;
+}
+
+table .tbody-xs td {
+	padding: .5rem 1.25rem;
+}
+
+/*******************************************************************************************************
+ swal2 디자인
+*******************************************************************************************************/
+.swal2-title {
+	font-weight: 600;
+}
+
+/*******************************************************************************************************
+ Modal 디자인
+*******************************************************************************************************/
+.modal-header {
+	padding: 1.25rem !important;
+	border-bottom: 1px solid rgba(0,0,0,.125) !important;
+}
+
+.modal-footer {
+	padding: 1.25rem !important;
+	border-top: 1px solid rgba(0,0,0,.125) !important;
+}
