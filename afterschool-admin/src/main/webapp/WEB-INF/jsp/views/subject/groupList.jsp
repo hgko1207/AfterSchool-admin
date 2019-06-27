@@ -73,7 +73,7 @@
 				<button type="button" class="close" data-dismiss="modal">&times;</button>
 			</div>
 			
-			<form id="updateGroupForm" action="${contextName}/subject/group/update" class="form-horizontal">
+			<form id="updateGroupForm" action="${pageContext.request.contextPath}/subject/group/update" class="form-horizontal">
 				<div class="modal-body">
 					<input type="hidden" name="id">
 					<div class="form-group row">

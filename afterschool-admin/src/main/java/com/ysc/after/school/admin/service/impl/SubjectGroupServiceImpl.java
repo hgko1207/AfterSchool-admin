@@ -50,6 +50,6 @@ public class SubjectGroupServiceImpl implements SubjectGroupService {
 
 	@Override
 	public SubjectGroup get(Integer id) {
-		return subjectGroupRepository.getOne(id);
+		return subjectGroupRepository.findById(id).get();
 	}
 }

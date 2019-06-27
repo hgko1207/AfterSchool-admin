@@ -17,7 +17,7 @@ public class SchoolServiceImpl implements SchoolService {
 
 	@Override
 	public School get(Integer id) {
-		return schoolRepository.getOne(id);
+		return schoolRepository.findById(id).get();
 	}
 	
 	@Override
