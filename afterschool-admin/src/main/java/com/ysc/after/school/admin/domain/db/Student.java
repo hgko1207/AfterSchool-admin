@@ -4,6 +4,8 @@ import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -16,6 +18,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 import com.ysc.after.school.admin.domain.Domain;
 
 import lombok.Data;
+import lombok.Getter;
 
 /**
  * 학생 관리 도메인
@@ -62,4 +65,22 @@ public class Student implements Domain {
 	
 	@UpdateTimestamp
 	private LocalDateTime updateDate;
+	
+	@Enumerated(EnumType.STRING)
+	@Column(nullable = false)
+	private TargetType targetType;
+	
+	@Getter
+	public enum TargetType {
+		전체("전체"), 
+		초등("초등"), 
+		중등("중등"), 
+		초_중등("초,중등");
+		
+		private String name;
+		
+		private TargetType(String name) {
+			this.name = name;
+		}
+	}
 }

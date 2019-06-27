@@ -1,5 +1,6 @@
 package com.ysc.after.school.admin.controller;
 
+import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,12 +12,15 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.ysc.after.school.admin.domain.SubjectSearchParam;
+import com.ysc.after.school.admin.domain.db.Subject;
 import com.ysc.after.school.admin.domain.db.SubjectGroup;
-import com.ysc.after.school.admin.service.SchoolService;
 import com.ysc.after.school.admin.service.SubjectGroupService;
+import com.ysc.after.school.admin.service.SubjectService;
 
 /**
  * 과목 관리 컨트롤러 클래스
@@ -32,7 +36,7 @@ public class SubjectController {
 	private SubjectGroupService subjectGroupService;
 	
 	@Autowired
-	private SchoolService schoolService;
+	private SubjectService subjectService;
 
 	/**
 	 * 과목 그룹 화면
@@ -48,7 +52,7 @@ public class SubjectController {
 	 */
 	@PostMapping("group/search")
 	@ResponseBody 
-	public ResponseEntity<?> search() {
+	public ResponseEntity<?> searchGroup() {
 		return new ResponseEntity<>(subjectGroupService.getList(), HttpStatus.OK);
 	}
 	
@@ -108,13 +112,25 @@ public class SubjectController {
 		return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 	}
 	
+	/**
+	 * 과목 조회 화면
+	 * @param model
+	 */
 	@GetMapping("list")
 	public void list(Model model) {
-		model.addAttribute("schools", schoolService.getList().stream().map(data -> {
-			if (data.getName().contains("분교")) {
-				return data.getName();
-			}
-			return data.getName() + data.getSchoolType().getName();
-		}).sorted().collect(Collectors.toList()));
+		model.addAttribute("subjectGroups", subjectGroupService.getList());
+	}
+	
+	/**
+	 * 과목 조회
+	 * @return
+	 */
+	@PostMapping("search")
+	@ResponseBody 
+	public List<Subject> search(@RequestBody SubjectSearchParam param) {
+		return subjectService.getList(param).stream().map(data -> {
+			data.setTarget(data.getTargetType().getName() + " " + data.getGradeType().getName() + "(" + data.getFixedNumber() + ")");
+			return data;
+		}).collect(Collectors.toList());
 	}
 }

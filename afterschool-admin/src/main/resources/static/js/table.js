@@ -26,7 +26,6 @@ var Datatables = {
 				info: info ? info : " _TOTAL_ 개의 데이터가 있습니다." 
 			},
 			columns: tableOption ? tableOption.columns : null,
-			pageLength: 10,
 			order: [[0, 'asc']]
 		});
 		
@@ -38,25 +37,26 @@ var Datatables = {
 				info: info ? info : " _TOTAL_ 개의 데이터가 있습니다." 
 			},
 			columns: tableOption ? tableOption.columns : null,
-			columnDefs: [{ 
-                orderable: false,
-                targets: [-1]
-            }],
-			pageLength: 10,
+			columnDefs: [
+				{ orderable: false, targets: [-1] }
+			],
 			order: [[0, 'asc']]
 		});
 		
 		return table;
 	},
-	order: function(id, tableOption, num) {
+	order: function(id, tableOption, num, info) {
 		var table = $(id).DataTable({
+			language: {
+				info: info ? info : " _TOTAL_ 개의 데이터가 있습니다." 
+			},
 		    columns: tableOption ? tableOption.columns : null,
 		    columnDefs: [
 		    	{ orderable: true, className: 'reorder', targets: 0 },
 		    	{ orderable: true, className: 'reorder', targets: num },
 		    	{ orderable: false, targets: '_all' }
 		    ],
-		    order: [[num, 'asc']]
+		    order: [[0, 'asc']]
 		});
 		
 		return table;
