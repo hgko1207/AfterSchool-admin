@@ -4,7 +4,7 @@
 <!-- Main navbar -->
 <div class="navbar navbar-expand-md navbar-dark">
 	<div class="navbar-brand">
-		<a href="${pageContext.request.contextPath}/student/list" class="d-inline-block ml-2">
+		<a href="${pageContext.request.contextPath}/student/list" class="d-inline-block ml-4">
 			<img src="${pageContext.request.contextPath}/images/logo.png" alt="logo">
 		</a>
 	</div>

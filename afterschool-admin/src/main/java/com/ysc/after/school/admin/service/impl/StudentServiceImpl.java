@@ -17,6 +17,11 @@ public class StudentServiceImpl implements StudentService {
 	private StudentRepository studentRepository;
 
 	@Override
+	public Student get(Integer id) {
+		return studentRepository.getOne(id);
+	}
+	
+	@Override
 	public List<Student> getList() {
 		return studentRepository.findAll();
 	}
@@ -40,8 +45,8 @@ public class StudentServiceImpl implements StudentService {
 	}
 
 	@Override
-	public boolean delete(Student domain) {
-		studentRepository.delete(domain);
+	public boolean delete(Integer id) {
+		studentRepository.deleteById(id);
 		return true;
 	}
 
@@ -51,7 +56,6 @@ public class StudentServiceImpl implements StudentService {
 
 	@Override
 	public List<Student> getList(StudentSearchParam param) {
-		System.err.println(param);
 		if (!param.getSchool().isEmpty() && !param.getGrade().isEmpty()) {
 			return studentRepository.findBySchoolAndGrade(param.getSchool(), Integer.parseInt(param.getGrade()));
 		} else if (param.getSchool().isEmpty() && !param.getGrade().isEmpty()) {

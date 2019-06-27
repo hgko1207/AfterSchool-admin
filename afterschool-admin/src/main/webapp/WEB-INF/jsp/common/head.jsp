@@ -44,5 +44,6 @@
 	<!-- /theme JS files -->
 	
 	<script src="${contextName}/js/common.js"></script>
+	<script src="${contextName}/js/custom.js"></script>
 	<script src="${contextName}/js/table.js"></script>
 </head>

@@ -31,6 +31,17 @@
 						</li>
 					</ul>
 				</li>
+				<li id="subject" class="nav-item nav-item-submenu">
+					<a href="#" class="nav-link"><i class="icon-archive"></i> <span>과목 관리</span></a>
+					<ul class="nav nav-group-sub" data-submenu-title="Layouts">
+						<li id="subject_groupList" class="nav-item"><a href="${pageContext.request.contextPath}/subject/groupList" class="nav-link">
+							<i class="icon-list"></i><span>과목 그룹 관리</span></a>
+						</li>
+						<li id="subject_list" class="nav-item"><a href="${pageContext.request.contextPath}/subject/list" class="nav-link">
+							<i class="icon-list"></i><span>수강 과목 조회</span></a>
+						</li>
+					</ul>
+				</li>
 				<li id="apply" class="nav-item nav-item-submenu">
 					<a href="#" class="nav-link"><i class="icon-stack-empty"></i> <span>수강 관리</span></a>
 					<ul class="nav nav-group-sub" data-submenu-title="Layouts">

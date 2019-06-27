@@ -19,4 +19,9 @@
 	<definition name="apply/*" extends="layout">
 		<put-attribute name="content" value="/WEB-INF/jsp/views/apply/{1}.jsp" />
     </definition>
+    
+    <!-- 수강신청 -->
+	<definition name="subject/*" extends="layout">
+		<put-attribute name="content" value="/WEB-INF/jsp/views/subject/{1}.jsp" />
+    </definition>
 </tiles-definitions>

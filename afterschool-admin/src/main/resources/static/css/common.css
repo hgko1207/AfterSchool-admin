@@ -4,12 +4,12 @@
  Header µğÀÚÀÎ
 *******************************************************************************************************/
 .navbar-brand {
-	padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
+	padding-top: 0.1rem;
+    padding-bottom: 0.1rem;
 }
 
 .navbar-brand img {
-	height: 30px;
+	height: 44px;
 }
 
 .navbar-title {

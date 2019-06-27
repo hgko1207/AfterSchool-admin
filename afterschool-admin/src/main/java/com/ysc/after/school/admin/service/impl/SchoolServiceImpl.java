@@ -16,6 +16,11 @@ public class SchoolServiceImpl implements SchoolService {
 	private SchoolRepository schoolRepository;
 
 	@Override
+	public School get(Integer id) {
+		return schoolRepository.getOne(id);
+	}
+	
+	@Override
 	public List<School> getList() {
 		return schoolRepository.findAll();
 	}
@@ -39,12 +44,13 @@ public class SchoolServiceImpl implements SchoolService {
 	}
 
 	@Override
-	public boolean delete(School domain) {
-		schoolRepository.delete(domain);
+	public boolean delete(Integer id) {
+		schoolRepository.deleteById(id);
 		return true;
 	}
 
 	private boolean isNew(School domain) {
 		return !schoolRepository.existsById(domain.getId());
 	}
+	
 }

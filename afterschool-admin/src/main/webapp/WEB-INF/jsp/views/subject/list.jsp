@@ -3,16 +3,16 @@
 
 <c:import url="/WEB-INF/jsp/common/pageHeader.jsp" >
   	<c:param name="icon" value="icon-display4" />
-  	<c:param name="title" value="수강 신청 조회" />
-  	<c:param name="firstname" value="수강관리" />
-  	<c:param name="lastname" value="수강신청조회" />
+  	<c:param name="title" value="수강 과목 조회" />
+  	<c:param name="firstname" value="과목관리" />
+  	<c:param name="lastname" value="수강과목조회" />
 </c:import>
 
 <div class="content">
 	<div class="card mb-0">
 		<div class="card-header header-elements-inline bg-white">
 			<h4 class="card-title font-weight-bold">
-				<i class="icon-list mr-2"></i>신청된 수강 목록
+				<i class="icon-list mr-2"></i>등록된 수강 과목 목록
 			</h4>
 			<div class="header-elements">
 			

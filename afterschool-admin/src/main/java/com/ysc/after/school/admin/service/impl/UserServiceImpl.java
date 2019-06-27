@@ -39,8 +39,8 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public boolean delete(User domain) {
-		userRepository.delete(domain);
+	public boolean delete(Integer id) {
+		userRepository.deleteById(id);
 		return true;
 	}
 
@@ -51,5 +51,10 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public User login(String userId, String password) {
 		return userRepository.findByUserIdAndPassword(userId, password);
+	}
+
+	@Override
+	public User get(Integer id) {
+		return userRepository.getOne(id);
 	}
 }
