@@ -22,29 +22,22 @@
 			<div class="d-flex mt-1 mb-2">
 				<label class="col-form-label font-weight-bold mr-3">검색조건 <i class="icon-arrow-right13"></i></label>
 				<div class="mr-2">
-					<%-- <select class="form-control form-control-select2" name="rank" data-width="160">
-						<option value="0">전체</option>
-						<c:forEach var="rank" items="${ranks}">
-							<option value="${rank.id}">${rank.name}</option>
-						</c:forEach>
-					</select> --%>
-					
-					<select class="form-control select-search" name="school">
-						<option value="">전체</option>
+					<select class="form-control select-search" name="school" data-width="200">
+						<option value="">- 전 체 -</option>
 						<c:forEach var="school" items="${schools}" varStatus="status">
 							<option value="${school}">${school}</option>
 						</c:forEach>
 					</select>
 				</div>
 				<div class="mr-3">
-					<select class="form-control form-control-select2" name="position" data-width="160">
-						<option value="0">전체</option>
-						<c:forEach var="position" items="${positions}">
-							<option value="${position.id}">${position.name}</option>
+					<select class="form-control form-control-select2" name="grade" data-width="160">
+						<option value="">- 전 체 -</option>
+						<c:forEach var="item" begin="1" end="6" step="1">
+							<option value="${item}">${item} 학년</option>
 						</c:forEach>
 					</select>
 				</div>
-				<button id="searchBtn" class="btn bg-teal-400"><i class="icon-search4"></i> 조 회</button>
+				<button id="searchBtn" class="btn bg-teal-400"><i class="icon-search4 mr-2"></i> 조 회</button>
 			</div>
 			
 			<table class="table table-bordered table-striped table-hover" id="studentTable">
@@ -110,8 +103,8 @@ var StudentManager = function() {
 		},
 		search: function() {
 			var param = new Object();
-			param.rankId = $("select[name=rank]").val();
-			param.positionId = $("select[name=position]").val();
+			param.school = $("select[name=school]").val();
+			param.grade = $("select[name=grade]").val();
 			Datatables.rowsAdd(this.table, contextPath + "/student/search", param);
 		}
 	}

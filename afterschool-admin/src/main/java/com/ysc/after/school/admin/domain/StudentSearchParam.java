@@ -11,7 +11,7 @@ import lombok.Data;
 @Data
 public class StudentSearchParam {
 
-	private int rankId;
+	private String school;
 	
-	private int positionId;
+	private String grade;
 }

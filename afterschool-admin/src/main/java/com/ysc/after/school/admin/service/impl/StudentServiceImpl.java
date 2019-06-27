@@ -51,6 +51,15 @@ public class StudentServiceImpl implements StudentService {
 
 	@Override
 	public List<Student> getList(StudentSearchParam param) {
-		return studentRepository.findAll();
+		System.err.println(param);
+		if (!param.getSchool().isEmpty() && !param.getGrade().isEmpty()) {
+			return studentRepository.findBySchoolAndGrade(param.getSchool(), Integer.parseInt(param.getGrade()));
+		} else if (param.getSchool().isEmpty() && !param.getGrade().isEmpty()) {
+			return studentRepository.findByGrade(Integer.parseInt(param.getGrade()));
+		} else if (!param.getSchool().isEmpty() && param.getGrade().isEmpty()) {
+			return studentRepository.findBySchool(param.getSchool());
+		} else {
+			return studentRepository.findAll();
+		}
 	}
 }
