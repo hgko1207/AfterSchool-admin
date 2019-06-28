@@ -66,7 +66,7 @@
 <div id="updateGroupModal" class="modal fade" tabindex="-1">
 	<div class="modal-dialog modal-md">
 		<div class="modal-content">
-			<div class="modal-header">
+			<div class="modal-header bg-primary">
 				<h5 class="modal-title">
 					<i class="icon-pencil6 mr-2"></i>과목 그룹 정보 수정
 				</h5>
@@ -91,8 +91,8 @@
 				</div>
 				
 				<div class="modal-footer">
-					<button type="submit" class="btn btn-primary mr-2">&nbsp;&nbsp;수 정&nbsp;&nbsp;</button>
-					<button type="button" class="btn btn-light" data-dismiss="modal">&nbsp;&nbsp;닫 기&nbsp;&nbsp;</button>
+					<button type="submit" class="btn btn-primary mr-2 px-3"><i class="icon-pencil5 mr-2"></i>수 정</button>
+					<button type="button" class="btn btn-light px-3" data-dismiss="modal"><i class="icon-cross2 mr-2"></i>닫 기</button>
 				</div>
 			</form>
 		</div>
@@ -160,7 +160,7 @@ var SettingManager = function() {
         	controlGroupData();
         },
         _delete: function(id) {
-        	deleteCommon(contextPath + "/subject/group/delete", id, "과목 그룹", Datatable);
+        	deleteCommon(contextPath + "/subject/group/delete", id, "과목 그룹", Datatable, "과목 그룹을 삭제하면 설정된 과목도 삭제가 됩니다.<br>그래도 삭제하시겠습니까?");
         },
         modal: function(id) {
         	$.ajax({

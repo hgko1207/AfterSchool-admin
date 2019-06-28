@@ -102,6 +102,9 @@ public class Subject implements Domain {
     @JoinColumn(name = "subject_group_id")
 	private SubjectGroup subjectGroup;
 	
+	@Transient
+	private int groupId;
+	
 	/** 순서지정 */
 	private int ordered;
 	
@@ -114,7 +117,7 @@ public class Subject implements Domain {
 	
 	@Getter
 	public enum GradeType {
-		NONE("", 0, 0),
+		NONE("전체", 0, 0),
 		GRADE_1_2("1-2학년", 1, 2),
 		GRADE_1_3("1-3학년", 1, 3),
 		GRADE_4_6("4-6학년", 4, 6),

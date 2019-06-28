@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.ysc.after.school.admin.domain.SubjectSearchParam;
 import com.ysc.after.school.admin.domain.db.Subject;
 import com.ysc.after.school.admin.domain.db.SubjectGroup;
+import com.ysc.after.school.admin.domain.db.Student.TargetType;
+import com.ysc.after.school.admin.domain.db.Subject.GradeType;
 import com.ysc.after.school.admin.service.SubjectGroupService;
 import com.ysc.after.school.admin.service.SubjectService;
 
@@ -99,7 +101,7 @@ public class SubjectController {
 	
 	/**
 	 * 과목 그룹 삭제
-	 * @param subjectGroup
+	 * @param id
 	 * @return
 	 */
 	@DeleteMapping("group/delete")
@@ -119,10 +121,13 @@ public class SubjectController {
 	@GetMapping("list")
 	public void list(Model model) {
 		model.addAttribute("subjectGroups", subjectGroupService.getList());
+		model.addAttribute("targetTypes", TargetType.values());
+		model.addAttribute("gradeTypes", GradeType.values());
 	}
 	
 	/**
 	 * 과목 조회
+	 * @param param
 	 * @return
 	 */
 	@PostMapping("search")
@@ -135,11 +140,86 @@ public class SubjectController {
 	}
 	
 	/**
+	 * 과목 정보 불러오기
+	 * @param id
+	 * @return
+	 */
+	@GetMapping("get")
+	@ResponseBody 
+	public Subject get(int id) {
+		return subjectService.get(id);
+	}
+	
+	/**
 	 * 과목 등록 화면
 	 * @param model
 	 */
 	@GetMapping("regist")
 	public void regist(Model model) {
+		model.addAttribute("subjectGroups", subjectGroupService.getList());
+		model.addAttribute("targetTypes", TargetType.values());
+		model.addAttribute("gradeTypes", GradeType.values());
+	}
+	
+	/**
+	 * 과목 등록 화면
+	 * @param subject
+	 */
+	@PostMapping("regist")
+	@ResponseBody
+	public ResponseEntity<?> regist(Subject subject) {
+		subject.setApplyStartTime("2019-07-01");
+		subject.setApplyEndTime("2019-07-05");
+		subject.setSubjectGroup(subjectGroupService.get(subject.getGroupId()));
 		
+		if (subjectService.regist(subject)) {
+			return new ResponseEntity<>(HttpStatus.OK);
+		}
+		
+		return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+	}
+	
+
+	/**
+	 * 과목 그룹 수정
+	 * @param subject
+	 * @return
+	 */
+	@PutMapping("update")
+	@ResponseBody
+	public ResponseEntity<?> update(Subject subject) {
+		Subject temp = subjectService.get(subject.getId());
+		temp.setSubjectGroup(subjectGroupService.get(subject.getGroupId()));
+		temp.setTeacher(subject.getTeacher());
+		temp.setTargetType(subject.getTargetType());
+		temp.setGradeType(subject.getGradeType());
+		temp.setFixedNumber(subject.getFixedNumber());
+		temp.setPeriod(subject.getPeriod());
+		temp.setTime(subject.getTime());
+		temp.setWeek(subject.getWeek());
+		temp.setCostDesc(subject.getCostDesc());
+		temp.setLocation(subject.getLocation());
+		temp.setDescription(subject.getDescription());
+		
+		if (subjectService.update(temp)) {
+			return new ResponseEntity<>(HttpStatus.OK);
+		}
+		
+		return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+	}
+	
+	/**
+	 * 과목 삭제
+	 * @param id
+	 * @return
+	 */
+	@DeleteMapping("delete")
+	@ResponseBody
+	public ResponseEntity<?> delete(int id) {
+		if (subjectService.delete(id)) {
+			return new ResponseEntity<>(HttpStatus.OK);
+		}
+		
+		return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 	}
 }

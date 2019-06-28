@@ -96,3 +96,7 @@ table .tbody-xs td {
 	padding: 1.25rem !important;
 	border-top: 1px solid rgba(0,0,0,.125) !important;
 }
+
+.btn-group-sm>.btn, .btn-sm {
+	    padding: .3125rem .60rem
+}

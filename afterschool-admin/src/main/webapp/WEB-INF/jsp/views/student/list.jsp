@@ -62,7 +62,7 @@
 <div id="updateStudentModal" class="modal fade" tabindex="-1">
 	<div class="modal-dialog modal-md">
 		<div class="modal-content">
-			<div class="modal-header">
+			<div class="modal-header bg-primary">
 				<h5 class="modal-title">
 					<i class="icon-pencil6 mr-2"></i>학생 정보 수정
 				</h5>
@@ -75,7 +75,7 @@
 					<div class="form-group row mb-2">
 						<label class="col-form-label col-md-4 text-md-right font-weight-bold">이 름</label>
 						<div class="col-md-6">
-							<input type="text" class="form-control" name="name" disabled>
+							<input type="text" class="form-control" name="name" readonly>
 						</div>
 					</div>
 					<div class="form-group row mb-2">
@@ -128,8 +128,8 @@
 				</div>
 				
 				<div class="modal-footer">
-					<button type="submit" class="btn btn-primary mr-2">&nbsp;&nbsp;수 정&nbsp;&nbsp;</button>
-					<button type="button" class="btn btn-light" data-dismiss="modal">&nbsp;&nbsp;닫 기&nbsp;&nbsp;</button>
+					<button type="submit" class="btn btn-primary mr-2 px-3"><i class="icon-pencil5 mr-2"></i>수 정</button>
+					<button type="button" class="btn btn-light px-3" data-dismiss="modal"><i class="icon-cross2 mr-2"></i>닫 기</button>
 				</div>
 			</form>
 		</div>

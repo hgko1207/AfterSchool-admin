@@ -91,9 +91,9 @@ function updateModalCommon(url, object, name, Datatable, modalId) {
  * @param Datatable
  * @returns
  */
-function deleteCommon(url, id, name, Datatable) {
+function deleteCommon(url, id, name, Datatable, title) {
 	swal({
-        title: "선택된 " + name + "을 삭제하시겠습니까?",
+        title: title ? title : "선택된 " + name + "을 삭제하시겠습니까?",
         type: "warning",
         confirmButtonText: "삭제",
         confirmButtonClass: "btn btn-danger m-btn m-btn--custom",
