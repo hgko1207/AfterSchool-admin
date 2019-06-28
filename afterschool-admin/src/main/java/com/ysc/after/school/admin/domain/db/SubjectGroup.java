@@ -1,11 +1,16 @@
 package com.ysc.after.school.admin.domain.db;
 
+import java.time.LocalDateTime;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import com.ysc.after.school.admin.domain.Domain;
 
@@ -33,4 +38,10 @@ public class SubjectGroup implements Domain {
 	/** 설명 */
 	@Column(nullable = false, length = 255)
 	private String description;
+	
+	@CreationTimestamp
+	private LocalDateTime createDate;
+	
+	@UpdateTimestamp
+	private LocalDateTime updateDate;
 }

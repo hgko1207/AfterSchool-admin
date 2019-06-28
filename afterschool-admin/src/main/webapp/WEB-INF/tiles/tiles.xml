@@ -10,6 +10,15 @@
         <put-attribute name="sidebar" value="/WEB-INF/jsp/common/sidebar.jsp" />
     </definition>
     
+    <definition name="home" extends="layout">
+        <put-attribute name="content" value="/WEB-INF/jsp/views/home/dashboard.jsp" />
+    </definition>
+    
+     <!-- 사용자 -->
+	<definition name="user/*" extends="layout">
+		<put-attribute name="content" value="/WEB-INF/jsp/views/user/{1}.jsp" />
+    </definition>
+    
     <!-- 학생등록 -->
 	<definition name="student/*" extends="layout">
 		<put-attribute name="content" value="/WEB-INF/jsp/views/student/{1}.jsp" />

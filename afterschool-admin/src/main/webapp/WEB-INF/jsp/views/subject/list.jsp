@@ -15,7 +15,7 @@
 				<i class="icon-list mr-2"></i>수강 과목 목록
 			</h4>
 			<div class="header-elements">
-				<a href="${pageContext.request.contextPath}/subject/regist" class="btn bg-primary"><i class="icon-add mr-2"></i>과목 등록</a>
+				<%-- <a href="${pageContext.request.contextPath}/subject/regist" class="btn bg-primary"><i class="icon-add mr-2"></i>과목 등록</a> --%>
 			</div>
 		</div>
 		<div class="card-body">

@@ -1,5 +1,7 @@
 package com.ysc.after.school.admin.domain.db;
 
+import java.time.LocalDateTime;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -11,6 +13,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import com.ysc.after.school.admin.domain.Domain;
 import com.ysc.after.school.admin.domain.db.Student.TargetType;
@@ -49,9 +54,6 @@ public class Subject implements Domain {
 	@Enumerated(EnumType.STRING)
 	@Column(nullable = false)
 	private GradeType gradeType;
-	
-	@Transient
-	private String target;
 	
 	/** 수강기간 */
 	@Column(nullable = false, length = 255)
@@ -102,11 +104,20 @@ public class Subject implements Domain {
     @JoinColumn(name = "subject_group_id")
 	private SubjectGroup subjectGroup;
 	
-	@Transient
-	private int groupId;
-	
 	/** 순서지정 */
 	private int ordered;
+	
+	@CreationTimestamp
+	private LocalDateTime createDate;
+	
+	@UpdateTimestamp
+	private LocalDateTime updateDate;
+	
+	@Transient
+	private String target;
+	
+	@Transient
+	private int groupId;
 	
 	@Transient
 	private ApplyType applyType;

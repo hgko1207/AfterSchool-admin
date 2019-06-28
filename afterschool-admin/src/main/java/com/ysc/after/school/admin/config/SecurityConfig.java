@@ -27,8 +27,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		// 로그인 설정
 		http.authorizeRequests() // 요청을 어떻게 보안을 할 것인지 설정
 //			.antMatchers("/**").permitAll()
+			.antMatchers("/home").access("hasRole('ROLE_USER')")
 			.antMatchers("/student/**").access("hasRole('ROLE_USER')")
+			.antMatchers("/subject/**").access("hasRole('ROLE_USER')")
 			.antMatchers("/apply/**").access("hasRole('ROLE_USER')")
+			.antMatchers("/user/**").access("hasRole('ROLE_USER')")
 		.and()
 			// 로그인 페이지 및 성공 url, handler 그리고 로그인 시 사용되는 id, password 파라미터 정의
 			.formLogin()
@@ -48,7 +51,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		
 		// session 관리
 		http.sessionManagement().sessionFixation().changeSessionId()
-			.maximumSessions(1).expiredUrl("/student/list");
+			.maximumSessions(3).expiredUrl("/home");
 	}
 	
 	@Override
@@ -60,7 +63,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Bean
 	public SaveIdLoginSuccessHandler saveIdLoginSuccessHandler() {
 		SaveIdLoginSuccessHandler handler = new SaveIdLoginSuccessHandler();
-		handler.setDefaultTargetUrl("/student/list");
+		handler.setDefaultTargetUrl("/home");
 		handler.setAlwaysUseDefaultTargetUrl(true);
 		
 		return handler;

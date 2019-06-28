@@ -1,5 +1,7 @@
 package com.ysc.after.school.admin.domain.db;
 
+import java.time.LocalDateTime;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -8,6 +10,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import com.ysc.after.school.admin.domain.Domain;
 
@@ -40,9 +45,21 @@ public class User implements Domain {
 	@Column(nullable = false, length = 100)
 	private String password;
 	
+	@Column(length = 45)
+	private String email;
+	
+	@Column(length = 20)
+	private String tel;
+	
 	@Enumerated(EnumType.STRING)
 	@Column(nullable = false)
 	private UserRole role;
+	
+	@CreationTimestamp
+	private LocalDateTime createDate;
+	
+	@UpdateTimestamp
+	private LocalDateTime updateDate;
 	
 	public enum UserRole {
 		ADMIN, GUEST;

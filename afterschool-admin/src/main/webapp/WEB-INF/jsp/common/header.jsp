@@ -4,7 +4,7 @@
 <!-- Main navbar -->
 <div class="navbar navbar-expand-md navbar-dark">
 	<div class="navbar-brand">
-		<a href="${pageContext.request.contextPath}/student/list" class="d-inline-block ml-4">
+		<a href="${pageContext.request.contextPath}/home" class="d-inline-block ml-4">
 			<img src="${pageContext.request.contextPath}/images/logo.png" alt="logo">
 		</a>
 	</div>
@@ -39,9 +39,9 @@
 				</a>
 
 				<div class="dropdown-menu dropdown-menu-right">
-					<a href="#" class="dropdown-item"><i class="icon-user-plus"></i> My profile</a>
+					<a href="${pageContext.request.contextPath}/user/profile" class="dropdown-item"><i class="icon-user"></i> My profile</a>
 					<div class="dropdown-divider"></div>
-					<a href="${pageContext.request.contextPath}/logout" class="dropdown-item"><i class="icon-switch2"></i> Logout</a>
+					<a href="${pageContext.request.contextPath}/logout" class="dropdown-item"><i class="icon-exit"></i> Logout</a>
 				</div>
 			</li>
 		</ul>

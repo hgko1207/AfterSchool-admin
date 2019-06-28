@@ -5,8 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.ysc.after.school.admin.domain.StudentSearchParam;
 import com.ysc.after.school.admin.domain.db.Student;
+import com.ysc.after.school.admin.domain.param.StudentSearchParam;
 import com.ysc.after.school.admin.repository.StudentRepository;
 import com.ysc.after.school.admin.service.StudentService;
 

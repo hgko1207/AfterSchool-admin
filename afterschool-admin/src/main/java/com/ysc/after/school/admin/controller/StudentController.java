@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.ysc.after.school.admin.domain.StudentSearchParam;
 import com.ysc.after.school.admin.domain.db.Student;
+import com.ysc.after.school.admin.domain.param.StudentSearchParam;
 import com.ysc.after.school.admin.service.SchoolService;
 import com.ysc.after.school.admin.service.StudentService;
 

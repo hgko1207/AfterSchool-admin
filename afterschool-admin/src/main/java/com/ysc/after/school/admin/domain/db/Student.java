@@ -56,8 +56,9 @@ public class Student implements Domain {
 	@Column(length = 20)
 	private String tel;
 	
-	@Transient
-	private String service;
+	@Enumerated(EnumType.STRING)
+	@Column(nullable = false)
+	private TargetType targetType;
 	
 	/** 등록시간 */
 	@CreationTimestamp
@@ -66,9 +67,8 @@ public class Student implements Domain {
 	@UpdateTimestamp
 	private LocalDateTime updateDate;
 	
-	@Enumerated(EnumType.STRING)
-	@Column(nullable = false)
-	private TargetType targetType;
+	@Transient
+	private String service;
 	
 	@Getter
 	public enum TargetType {

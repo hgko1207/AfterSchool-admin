@@ -6,8 +6,8 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.ysc.after.school.admin.domain.ApplySearchParam;
 import com.ysc.after.school.admin.domain.db.Apply;
+import com.ysc.after.school.admin.domain.param.ApplySearchParam;
 import com.ysc.after.school.admin.repository.ApplyRepository;
 import com.ysc.after.school.admin.service.ApplyService;
 

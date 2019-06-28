@@ -16,11 +16,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.ysc.after.school.admin.domain.SubjectSearchParam;
 import com.ysc.after.school.admin.domain.db.Subject;
 import com.ysc.after.school.admin.domain.db.SubjectGroup;
 import com.ysc.after.school.admin.domain.db.Student.TargetType;
 import com.ysc.after.school.admin.domain.db.Subject.GradeType;
+import com.ysc.after.school.admin.domain.param.SubjectSearchParam;
 import com.ysc.after.school.admin.service.SubjectGroupService;
 import com.ysc.after.school.admin.service.SubjectService;
 

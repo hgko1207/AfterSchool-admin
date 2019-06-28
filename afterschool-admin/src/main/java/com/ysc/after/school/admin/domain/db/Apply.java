@@ -1,5 +1,7 @@
 package com.ysc.after.school.admin.domain.db;
 
+import java.time.LocalDateTime;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -7,6 +9,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import com.ysc.after.school.admin.domain.Domain;
 
@@ -38,4 +43,7 @@ public class Apply implements Domain {
 	@OneToOne
     @JoinColumn(name = "subject_id")
 	private Subject subject;
+	
+	@CreationTimestamp
+	private LocalDateTime createDate;
 }

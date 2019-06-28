@@ -1,4 +1,4 @@
-package com.ysc.after.school.admin.domain;
+package com.ysc.after.school.admin.domain.param;
 
 import lombok.Data;
 

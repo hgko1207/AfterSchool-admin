@@ -23,6 +23,11 @@
 					<div class="text-uppercase font-size-md line-height-md">목록</div> 
 					<i class="icon-menu" title="Main"></i>
 				</li>
+				<li id="home" class="nav-item">
+					<a href="${pageContext.request.contextPath}/home" class="nav-link">
+						<i class="icon-home4"></i><span>Dashboard</span>
+					</a>
+				</li>
 				<li id="student" class="nav-item nav-item-submenu">
 					<a href="#" class="nav-link"><i class="icon-users"></i> <span>학생 관리</span></a>
 					<ul class="nav nav-group-sub" data-submenu-title="Layouts">
@@ -39,6 +44,9 @@
 						</li>
 						<li id="subject_list" class="nav-item"><a href="${pageContext.request.contextPath}/subject/list" class="nav-link">
 							<i class="icon-list"></i><span>수강 과목 조회</span></a>
+						</li>
+						<li id="subject_regist" class="nav-item"><a href="${pageContext.request.contextPath}/subject/regist" class="nav-link">
+							<i class="icon-pencil5"></i><span>수강 과목 등록</span></a>
 						</li>
 					</ul>
 				</li>
