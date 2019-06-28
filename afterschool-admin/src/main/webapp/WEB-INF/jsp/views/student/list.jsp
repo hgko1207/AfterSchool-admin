@@ -59,6 +59,83 @@
 	</div>
 </div>
 
+<div id="updateStudentModal" class="modal fade" tabindex="-1">
+	<div class="modal-dialog modal-md">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title">
+					<i class="icon-pencil6 mr-2"></i>학생 정보 수정
+				</h5>
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+			</div>
+			
+			<form id="updateStudentForm" action="${pageContext.request.contextPath}/student/update" class="form-horizontal">
+				<div class="modal-body">
+					<input type="hidden" name="id">
+					<div class="form-group row mb-2">
+						<label class="col-form-label col-md-4 text-md-right font-weight-bold">이 름</label>
+						<div class="col-md-6">
+							<input type="text" class="form-control" name="name" disabled>
+						</div>
+					</div>
+					<div class="form-group row mb-2">
+						<label class="col-form-label col-md-4 text-md-right font-weight-bold">학 교</label>
+						<div class="col-md-6">
+							<select class="form-control select-search" name="school">
+								<c:forEach var="school" items="${schools}" varStatus="status">
+									<option value="${school}">${school}</option>
+								</c:forEach>
+							</select>
+						</div>
+					</div>
+					<div class="form-group row mb-2">
+						<label class="col-form-label col-md-4 text-md-right font-weight-bold">학 년</label>
+						<div class="col-md-6">
+							<select class="form-control form-control-select2" name="grade">
+								<c:forEach var="item" begin="1" end="6" step="1">
+									<option value="${item}">${item} 학년</option>
+								</c:forEach>
+							</select>
+						</div>
+					</div>
+					<div class="form-group row mb-2">
+						<label class="col-form-label col-md-4 text-md-right font-weight-bold">반</label>
+						<div class="col-md-6">
+							<select class="form-control form-control-select2" name="classType">
+								<c:forEach var="item" begin="1" end="10" step="1">
+									<option value="${item}">${item} 반</option>
+								</c:forEach>
+							</select>
+						</div>
+					</div>
+					<div class="form-group row mb-2">
+						<label class="col-form-label col-md-4 text-md-right font-weight-bold">번 호</label>
+						<div class="col-md-6">
+							<select class="form-control form-control-select2" name="number">
+								<c:forEach var="item" begin="1" end="40" step="1">
+									<option value="${item}">${item} 번</option>
+								</c:forEach>
+							</select>
+						</div>
+					</div>
+					<div class="form-group row mb-2">
+						<label class="col-form-label col-md-4 text-md-right font-weight-bold">핸드폰</label>
+						<div class="col-md-6">
+							<input type="text" class="form-control" name="tel" maxlength="11" 
+								autocomplete="off" placeholder="'-' 없이 입력하세요." required >
+						</div>
+					</div>
+				</div>
+				
+				<div class="modal-footer">
+					<button type="submit" class="btn btn-primary mr-2">&nbsp;&nbsp;수 정&nbsp;&nbsp;</button>
+					<button type="button" class="btn btn-light" data-dismiss="modal">&nbsp;&nbsp;닫 기&nbsp;&nbsp;</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
 <script>
 var StudentManager = function() {
 	var DataTable = {
@@ -93,7 +170,7 @@ var StudentManager = function() {
 		    	width: "8 %",
 		    	render: function(data, type, row, meta) {
 		    		return '<button type="button" class="btn bg-primary-400 btn-sm" ' +
-		    			'onClick="SettingManager.modal(' + row.id + ')"><i class="icon-pencil7"></i></button>'
+		    			'onClick="StudentManager.modal(' + row.id + ')"><i class="icon-pencil7"></i></button>'
 		    	}
 		    }]
 		},
@@ -115,11 +192,39 @@ var StudentManager = function() {
 		});
 	}
 	
+	var controlStudentData = function() {
+		$('#updateStudentForm').submit(function(e) {
+			e.preventDefault();
+			var form = $(this);
+			var url = form.attr('action');
+			
+		 	updateModalCommon(url, form.serializeObject(), "학생", DataTable, "updateStudentModal");
+		}); 
+	}
+	
 	return {
 		init: function() {
 			DataTable.init();
 			searchControl();
-		}
+			controlStudentData();
+		},
+	 	modal: function(id) {
+	 		$.ajax({
+	    		url: contextPath + "/student/get",
+	    		type: "GET",
+	    		data: {"id": id},
+	    		success: function(response) {
+	    			$('#updateStudentForm input[name="id"]').val(response.id);
+	    			$('#updateStudentForm input[name="name"]').val(response.name);
+	    			$('#updateStudentForm select[name="school"]').val(response.school).trigger('change');
+	    			$('#updateStudentForm select[name="grade"]').val(response.grade).trigger('change');
+	    			$('#updateStudentForm select[name="classType"]').val(response.classType).trigger('change');
+	    			$('#updateStudentForm select[name="number"]').val(response.number).trigger('change');
+	    			$('#updateStudentForm input[name="tel"]').val(response.tel);
+	    			$("#updateStudentModal").modal();
+	           	}
+	    	}); 
+	 	}
 	}
 }();
 

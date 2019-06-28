@@ -21,7 +21,7 @@
 		<div class="card-body">
 			<div class="d-flex mt-1 mb-2">
 				<label class="col-form-label font-weight-bold mr-3">검색조건 <i class="icon-arrow-right13"></i></label>
-				<div class="mr-2">
+				<div class="mr-3">
 					<select class="form-control select-search" name="school" data-width="200">
 						<option value="">- 전 체 -</option>
 						<c:forEach var="school" items="${schools}" varStatus="status">
@@ -29,18 +29,10 @@
 						</c:forEach>
 					</select>
 				</div>
-				<div class="mr-3">
-					<select class="form-control form-control-select2" name="grade" data-width="160">
-						<option value="">- 전 체 -</option>
-						<c:forEach var="item" begin="1" end="6" step="1">
-							<option value="${item}">${item} 학년</option>
-						</c:forEach>
-					</select>
-				</div>
 				<button id="searchBtn" class="btn bg-teal-400"><i class="icon-search4 mr-2"></i> 조 회</button>
 			</div>
 			
-			<table class="table table-bordered table-striped table-hover" id="studentTable">
+			<table class="table table-bordered table-striped table-hover" id="applyTable">
 				<thead class="text-center">
 					<tr>
 						<th>번호</th>
@@ -51,6 +43,7 @@
 						<th>소속(학교 명)</th>
 						<th>학년</th>
 						<th>연락처</th>
+						<th></th>
 					</tr>
 				</thead>
 				<tbody class="tbody-xs text-center"></tbody>
@@ -58,3 +51,68 @@
 		</div>
 	</div>
 </div>
+
+<script>
+var ApplyManager = function() {
+	var DataTable = {
+		ele: "#applyTable",
+		table: null,
+		option: {
+			columns: [{
+		    	width: "6%",
+		    	render: function(data, type, row, meta) {
+		    		return meta.row + 1
+		    	}
+		    },
+		    { data: "subject.name" },
+		    { data: "subject.teacher" },
+		    {
+		    	render: function(data, type, row, meta) {
+		    		return row.subject.period + "<br>" + row.subject.time;
+		    	}
+		    },
+		    { data: "student.name" },
+		    { data: "student.school" },
+		    { 
+		    	render: function(data, type, row, meta) {
+		    		return row.student.grade + " 학년";
+		    	}
+		    },{ 
+		    	data: "student.tel" 
+		    },{
+		    	width: "5%",
+		    	render: function(data, type, row, meta) {
+		    		return '<button type="button" class="btn bg-primary-400 btn-sm" ' +
+		    			'onClick="ApplyManager.modal(' + row.id + ')"><i class="icon-pencil7"></i></button>'
+		    	}
+		    }]
+		},
+		init: function() {
+			this.table = Datatables.order(this.ele, this.option, 1, " _TOTAL_ 개의 수강신청이 있습니다.");
+			this.search();
+		},
+		search: function() {
+			var param = new Object();
+			param.school = $("select[name=school]").val();
+			Datatables.rowsAdd(this.table, contextPath + "/apply/search", param);
+		}
+	}
+	
+	var searchControl = function() {
+		$("#searchBtn").click(function() {
+			DataTable.search();
+		});
+	}
+	
+	return {
+		init: function() {
+			DataTable.init();
+			searchControl();
+		}
+	}
+}();
+
+document.addEventListener('DOMContentLoaded', function() {
+	ApplyManager.init();
+});
+</script>

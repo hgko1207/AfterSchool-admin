@@ -1,6 +1,7 @@
 package com.ysc.after.school.admin.controller;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -34,7 +35,12 @@ public class ApplyController {
 
 	@GetMapping("list")
 	public void list(Model model) {
-		model.addAttribute("schools", schoolService.getList());
+		model.addAttribute("schools", schoolService.getList().stream().map(data -> {
+			if (data.getName().contains("분교")) {
+				return data.getName();
+			}
+			return data.getName() + data.getSchoolType().getName();
+		}).sorted().collect(Collectors.toList()));
 	}
 	
 	/**
@@ -44,6 +50,7 @@ public class ApplyController {
 	@PostMapping("search")
 	@ResponseBody 
 	public List<Apply> search(@RequestBody ApplySearchParam param) {
+		System.err.println(applyService.getList(param).size());
 		return applyService.getList(param);
 	}
 }

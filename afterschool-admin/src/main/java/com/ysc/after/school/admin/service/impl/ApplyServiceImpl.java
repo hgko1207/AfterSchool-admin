@@ -1,6 +1,7 @@
 package com.ysc.after.school.admin.service.impl;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -56,6 +57,12 @@ public class ApplyServiceImpl implements ApplyService {
 
 	@Override
 	public List<Apply> getList(ApplySearchParam param) {
-		return getList();
+		if (param.getSchool().isEmpty()) {
+			return getList();
+		} else {
+			return getList().stream().filter(data -> {
+				return data.getStudent().getSchool().equals(param.getSchool());
+			}).collect(Collectors.toList());
+		}
 	}
 }

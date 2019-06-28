@@ -133,4 +133,13 @@ public class SubjectController {
 			return data;
 		}).collect(Collectors.toList());
 	}
+	
+	/**
+	 * 과목 등록 화면
+	 * @param model
+	 */
+	@GetMapping("regist")
+	public void regist(Model model) {
+		
+	}
 }

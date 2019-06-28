@@ -56,7 +56,6 @@ public class SubjectServiceImpl implements SubjectService {
 
 	@Override
 	public List<Subject> getList(SubjectSearchParam param) {
-		System.err.println(param);
 		if (param.getGroupId() == 0) {
 			return getList();
 		} else {

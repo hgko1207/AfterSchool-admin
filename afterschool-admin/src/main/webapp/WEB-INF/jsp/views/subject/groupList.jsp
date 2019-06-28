@@ -77,14 +77,14 @@
 				<div class="modal-body">
 					<input type="hidden" name="id">
 					<div class="form-group row">
-						<label class="col-form-label col-md-4 text-md-right">그룹 이름 : </label>
-						<div class="col-md-6">
+						<label class="col-form-label col-md-3 text-md-right">그룹 이름 : </label>
+						<div class="col-md-7">
 							<input type="text" class="form-control" name="name" placeholder="과목 그룹 이름" required>
 						</div>
 					</div>
-					<div class="form-group row last">
-						<label class="col-form-label col-md-4 text-md-right">직급 순서 : </label>
-						<div class="col-md-6">
+					<div class="form-group row mb-2">
+						<label class="col-form-label col-md-3 text-md-right">설 명 : </label>
+						<div class="col-md-7">
 							<textarea rows="4" class="form-control" name="description" placeholder="과목 그룹에 대한 설명" required></textarea>
 						</div>
 					</div>
@@ -136,7 +136,7 @@ var SettingManager = function() {
 		}
 	}
 	
-	var controlRankData = function() {
+	var controlGroupData = function() {
 		$('#registGroupForm').submit(function(e) {
 			e.preventDefault();
 			var form = $(this);
@@ -157,7 +157,7 @@ var SettingManager = function() {
 	return {
         init: function() {
         	Datatable.init();
-        	controlRankData();
+        	controlGroupData();
         },
         _delete: function(id) {
         	deleteCommon(contextPath + "/subject/group/delete", id, "과목 그룹", Datatable);
