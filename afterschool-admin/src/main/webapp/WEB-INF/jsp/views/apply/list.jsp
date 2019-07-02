@@ -21,11 +21,29 @@
 		<div class="card-body">
 			<div class="d-flex mt-1 mb-2">
 				<label class="col-form-label font-weight-bold mr-3">검색조건 <i class="icon-arrow-right13"></i></label>
-				<div class="mr-3">
+				<div class="mr-2">
+					<select class="form-control select-search" name="subject" data-width="340">
+						<option value="">- 전 체 -</option>
+						<c:forEach var="subject" items="${subjects}" varStatus="status">
+							<option value="${subject.id}">
+								${subject.name} - ${subject.week}
+							</option>
+						</c:forEach>
+					</select>
+				</div>
+				<div class="mr-2">
 					<select class="form-control select-search" name="school" data-width="200">
 						<option value="">- 전 체 -</option>
 						<c:forEach var="school" items="${schools}" varStatus="status">
 							<option value="${school}">${school}</option>
+						</c:forEach>
+					</select>
+				</div>
+				<div class="mr-3">
+					<select class="form-control form-control-select2" name="grade" data-width="160">
+						<option value="">- 전 체 -</option>
+						<c:forEach var="item" begin="1" end="6" step="1">
+							<option value="${item}">${item} 학년</option>
 						</c:forEach>
 					</select>
 				</div>
@@ -37,13 +55,14 @@
 					<tr>
 						<th>번호</th>
 						<th>과목</th>
-						<th>강사명</th>
 						<th>수강기간</th>
+						<th>운영시간</th>
+						<th>유형</th>
+						<th>강사명</th>
 						<th>학생명</th>
 						<th>소속(학교 명)</th>
-						<th>학년</th>
+						<th>학년 반 번호</th>
 						<th>연락처</th>
-						<th>Actions</th>
 					</tr>
 				</thead>
 				<tbody class="tbody-xs text-center"></tbody>
@@ -65,38 +84,32 @@ var ApplyManager = function() {
 		    	}
 		    },
 		    { data: "subject.name" },
+		    { data: "subject.period" },
+		    { data: "subject.time" },
+		    { data: "subject.week" },
 		    { data: "subject.teacher" },
-		    {
-		    	render: function(data, type, row, meta) {
-		    		return row.subject.period + "<br>" + row.subject.time;
-		    	}
-		    },
 		    { data: "student.name" },
 		    { data: "student.school" },
 		    { 
 		    	render: function(data, type, row, meta) {
-		    		return row.student.grade + " 학년";
+		    		return row.student.grade + "학년 " + row.student.classType + "반 " + row.student.number + "번";
 		    	}
 		    },
 		    { 
 	    		render: function(data, type, row, meta) {
 	    			return row.student.tel.replace(/(^02.{0}|^01.{1}|[0-9]{3})([0-9]+)([0-9]{4})/,"$1-$2-$3");
 	    		} 
-		    },{
-		    	width: "5%",
-		    	render: function(data, type, row, meta) {
-	    			return '<button type="button" class="btn btn-outline bg-primary text-primary-800 btn-sm" ' +
-		    			'onClick="ApplyManager.modal(' + row.id + ')"><i class="icon-pencil7"></i></button>'
-		    	}
 		    }]
 		},
 		init: function() {
-			this.table = Datatables.order(this.ele, this.option, 1, " _TOTAL_ 개의 수강신청이 있습니다.");
+			this.table = Datatables.apply(this.ele, this.option, " _TOTAL_ 개의 수강신청이 있습니다.");
 			this.search();
 		},
 		search: function() {
 			var param = new Object();
+			param.subjectId = $("select[name=subject]").val();
 			param.school = $("select[name=school]").val();
+			param.grade = $("select[name=grade]").val();
 			Datatables.rowsAdd(this.table, contextPath + "/apply/search", param);
 		}
 	}

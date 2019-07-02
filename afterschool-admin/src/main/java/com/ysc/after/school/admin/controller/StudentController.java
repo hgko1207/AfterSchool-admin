@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -87,6 +88,21 @@ public class StudentController {
 		temp.setTel(student.getTel());
 		
 		if (studentService.update(temp)) {
+			return new ResponseEntity<>(HttpStatus.OK);
+		}
+		
+		return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+	}
+	
+	/**
+	 * 학생 삭제
+	 * @param id
+	 * @return
+	 */
+	@DeleteMapping("delete")
+	@ResponseBody
+	public ResponseEntity<?> delete(int id) {
+		if (studentService.delete(id)) {
 			return new ResponseEntity<>(HttpStatus.OK);
 		}
 		

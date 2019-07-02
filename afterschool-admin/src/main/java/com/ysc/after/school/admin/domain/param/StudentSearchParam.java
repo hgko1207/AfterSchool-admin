@@ -14,4 +14,6 @@ public class StudentSearchParam {
 	private String school;
 	
 	private String grade;
+	
+	private String name;
 }

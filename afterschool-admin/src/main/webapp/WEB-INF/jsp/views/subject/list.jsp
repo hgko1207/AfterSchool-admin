@@ -40,6 +40,7 @@
 						<th>과목명</th>
 						<th>대상,<br>정원(명)</th>
 						<th>수강기간</th>
+						<th>운영시간</th>
 						<th>유형</th>
 						<th>강사명</th>
 						<th>재료비 및<br>교구비</th>
@@ -175,32 +176,33 @@ var SubjectManager = function() {
 		    	width: "8%",
 		    	data: "subjectGroup.name" 
 		    },{ 
-		    	width: "20%",
+		    	width: "24%",
 		    	data: "name" 
 		    },{
 		    	width: "8%",
 		    	data: "target" 
 		    },{
-		    	width: "12%",
-		    	render: function(data, type, row, meta) {
-		    		return row.period + "<br>" + row.time;
-		    	}
-		    },{ 
 		    	width: "8%",
+		    	data: "period" 
+		    },{
+		    	width: "8%",
+		    	data: "time" 
+		    },{ 
+		    	width: "9%",
 		    	data: "week" 
 		    },{ 
-		    	width: "8%",
+		    	width: "12%",
 		    	data: "teacher"
 		    },{ 
-		    	width: "8%",
+		    	width: "9%",
 		    	data: "costDesc" 
 		    },{
 		    	width: "8%",
 		    	render: function(data, type, row, meta) {
-    				return '<button type="button" class="btn btn-outline bg-primary text-primary-800 btn-sm mr-1" ' +
+    				return '<button type="button" class="btn btn-outline bg-primary text-primary-800 btn-sm" ' +
 			    			'onClick="SubjectManager.modal(' + row.id + ')"><i class="icon-pencil7"></i></button>' +
     					'<button type="button" class="btn btn-outline bg-danger text-danger-800 btn-sm" ' + 
-		    				'onClick="SubjectManager._delete(' + row.id + ')"><i class="icon-trash"></i></button>'
+		    				'onClick="SubjectManager._delete(' + row.id + ')"><i class="icon-trash"></i></button>';
 		    	}
 		    }]
 		},

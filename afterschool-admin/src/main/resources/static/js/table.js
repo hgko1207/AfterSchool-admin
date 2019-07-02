@@ -62,9 +62,8 @@ var Datatables = {
 		
 		return table;
 	},
-	custom: function(id, tableOption, info) {
+	student: function(id, tableOption, info) {
 		var table = $(id).DataTable({
-			dom: '<"datatable-header"fl><"datatable-scroll-wrap"t><"datatable-footer"Bip>',
 			language: {
 				info: info ? info : " _TOTAL_ 개의 데이터가 있습니다."
 			},
@@ -73,6 +72,24 @@ var Datatables = {
 				{ orderable: false, targets: [-1] },
 				{ visible: false, targets: [7, 8] }
 			],
+			order: [[0, 'asc']]
+		});
+		
+		return table;
+	},
+	apply: function(id, tableOption, info) {
+		var table = $(id).DataTable({
+			dom: '<"datatable-header"fl><"datatable-scroll-wrap"t><"datatable-footer"Bip>',
+			language: {
+				info: info ? info : " _TOTAL_ 개의 데이터가 있습니다."
+			},
+			columns: tableOption ? tableOption.columns : null,
+			columnDefs: [
+				/*{ visible: false, targets: [7, 8] }*/
+				{ orderable: true, className: 'reorder', targets: 0 },
+		    	{ orderable: true, className: 'reorder', targets: 1 },
+		    	{ orderable: false, targets: '_all' }
+			],
 			buttons: {
 		        buttons: [{
 	                extend: 'excelHtml5',
@@ -80,7 +97,7 @@ var Datatables = {
                     text: '<i class="icon-folder-download mr-2"></i> 다운로드',
                     fieldSeparator: '\t',
 		            exportOptions: {
-		                columns: [1,2,3,4,5,6,7,8]
+		                columns: [1,2,3,4,5,6,7,8,9]
 		            }
 	            }]
 		    },

@@ -51,7 +51,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		
 		// session 관리
 		http.sessionManagement().sessionFixation().changeSessionId()
-			.maximumSessions(3).expiredUrl("/home");
+			.maximumSessions(5).expiredUrl("/home");
 	}
 	
 	@Override

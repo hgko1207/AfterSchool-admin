@@ -2,6 +2,8 @@ package com.ysc.after.school.admin.service.impl;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,6 +12,7 @@ import com.ysc.after.school.admin.domain.param.StudentSearchParam;
 import com.ysc.after.school.admin.repository.StudentRepository;
 import com.ysc.after.school.admin.service.StudentService;
 
+@Transactional
 @Service
 public class StudentServiceImpl implements StudentService {
 
@@ -57,13 +60,14 @@ public class StudentServiceImpl implements StudentService {
 	@Override
 	public List<Student> getList(StudentSearchParam param) {
 		if (!param.getSchool().isEmpty() && !param.getGrade().isEmpty()) {
-			return studentRepository.findBySchoolAndGrade(param.getSchool(), Integer.parseInt(param.getGrade()));
+			return studentRepository.findBySchoolAndGradeAndNameContaining(param.getSchool(), 
+					Integer.parseInt(param.getGrade()), param.getName());
 		} else if (param.getSchool().isEmpty() && !param.getGrade().isEmpty()) {
-			return studentRepository.findByGrade(Integer.parseInt(param.getGrade()));
+			return studentRepository.findByGradeAndNameContaining(Integer.parseInt(param.getGrade()), param.getName());
 		} else if (!param.getSchool().isEmpty() && param.getGrade().isEmpty()) {
-			return studentRepository.findBySchool(param.getSchool());
+			return studentRepository.findBySchoolAndNameContaining(param.getSchool(), param.getName());
 		} else {
-			return studentRepository.findAll();
+			return studentRepository.findByNameContaining(param.getName());
 		}
 	}
 }

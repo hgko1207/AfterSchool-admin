@@ -29,13 +29,16 @@
 						</c:forEach>
 					</select>
 				</div>
-				<div class="mr-3">
+				<div class="mr-2">
 					<select class="form-control form-control-select2" name="grade" data-width="160">
 						<option value="">- 전 체 -</option>
 						<c:forEach var="item" begin="1" end="6" step="1">
 							<option value="${item}">${item} 학년</option>
 						</c:forEach>
 					</select>
+				</div>
+				<div class="mr-3">
+					<input type="text" class="form-control" name="name" placeholder="학생 이름" data-width="160">
 				</div>
 				<button id="searchBtn" class="btn bg-info-600"><i class="icon-search4 mr-2"></i> 조 회</button>
 			</div>
@@ -181,21 +184,24 @@ var StudentManager = function() {
 		 	},
 		    { data: "residentNumber" },
 		    {
-		    	width: "6%",
+		    	width: "10%",
 		    	render: function(data, type, row, meta) {
 		    		return '<button type="button" class="btn btn-outline bg-primary text-primary-800 btn-sm" ' +
-		    			'onClick="StudentManager.modal(' + row.id + ')"><i class="icon-pencil7"></i></button>'
+		    				'onClick="StudentManager.modal(' + row.id + ')"><i class="icon-pencil7"></i></button>' +
+    					'<button type="button" class="btn btn-outline bg-danger text-danger-800 btn-sm" ' + 
+	    					'onClick="StudentManager._delete(' + row.id + ')"><i class="icon-trash"></i></button>'
 		    	}
 		    }]
 		},
 		init: function() {
-			this.table = Datatables.custom(this.ele, this.option, " _TOTAL_ 명의 학생이 있습니다.");
+			this.table = Datatables.student(this.ele, this.option, " _TOTAL_ 명의 학생이 있습니다.");
 			this.search();
 		},
 		search: function() {
 			var param = new Object();
 			param.school = $("select[name=school]").val();
 			param.grade = $("select[name=grade]").val();
+			param.name = $("input[name=name]").val();
 			Datatables.rowsAdd(this.table, contextPath + "/student/search", param);
 		}
 	}
@@ -238,7 +244,10 @@ var StudentManager = function() {
 	    			$("#updateStudentModal").modal();
 	           	}
 	    	}); 
-	 	}
+	 	},
+		_delete: function(id) {
+        	deleteCommon(contextPath + "/student/delete", id, "학생", DataTable);
+        }
 	}
 }();
 

@@ -1,5 +1,6 @@
 package com.ysc.after.school.admin.controller;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -16,6 +17,7 @@ import com.ysc.after.school.admin.domain.db.Apply;
 import com.ysc.after.school.admin.domain.param.ApplySearchParam;
 import com.ysc.after.school.admin.service.ApplyService;
 import com.ysc.after.school.admin.service.SchoolService;
+import com.ysc.after.school.admin.service.SubjectService;
 
 /**
  * 수강신청 관리 컨트롤러 클래스
@@ -32,6 +34,9 @@ public class ApplyController {
 	
 	@Autowired
 	private SchoolService schoolService;
+	
+	@Autowired
+	private SubjectService subjectService;
 
 	@GetMapping("list")
 	public void list(Model model) {
@@ -41,6 +46,9 @@ public class ApplyController {
 			}
 			return data.getName() + data.getSchoolType().getName();
 		}).sorted().collect(Collectors.toList()));
+		
+		model.addAttribute("subjects", subjectService.getList().stream()
+				.sorted(Comparator.comparing(subject -> subject.getName())).collect(Collectors.toList()));
 	}
 	
 	/**
@@ -50,7 +58,6 @@ public class ApplyController {
 	@PostMapping("search")
 	@ResponseBody 
 	public List<Apply> search(@RequestBody ApplySearchParam param) {
-		System.err.println(applyService.getList(param).size());
 		return applyService.getList(param);
 	}
 }

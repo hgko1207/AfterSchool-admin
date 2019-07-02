@@ -8,10 +8,12 @@ public interface StudentRepository extends DefaultRepository<Student, Integer> {
 
 	Student findByNameAndTel(String name, String tel);
 
-	List<Student> findBySchoolAndGrade(String school, int grade);
+	List<Student> findBySchoolAndGradeAndNameContaining(String school, int grade, String name);
 
-	List<Student> findBySchool(String school);
+	List<Student> findBySchoolAndNameContaining(String school, String name);
 
-	List<Student> findByGrade(int grade);
+	List<Student> findByGradeAndNameContaining(int grade, String name);
+
+	List<Student> findByNameContaining(String name);
 
 }

@@ -134,7 +134,7 @@ public class SubjectController {
 	@ResponseBody 
 	public List<Subject> search(@RequestBody SubjectSearchParam param) {
 		return subjectService.getList(param).stream().map(data -> {
-			data.setTarget(data.getTargetType().getName() + " " + data.getGradeType().getName() + "(" + data.getFixedNumber() + ")");
+			data.setTarget(data.getTargetType().getName() + " " + data.getGradeType().getName() + "<br>(" + data.getFixedNumber() + ")");
 			return data;
 		}).collect(Collectors.toList());
 	}

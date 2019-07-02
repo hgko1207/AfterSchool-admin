@@ -117,9 +117,9 @@ var SettingManager = function() {
 		    }, 
 		    { data: "description" }, 
 		    {
-		    	width: "14%",
+		    	width: "12%",
 		    	render: function(data, type, row, meta) {
-		    		return '<button type="button" class="btn btn-outline bg-primary text-primary-800 btn-sm mr-1" ' +
+		    		return '<button type="button" class="btn btn-outline bg-primary text-primary-800 btn-sm" ' +
 		    			'onClick="SettingManager.modal(' + row.id + ')"><i class="icon-pencil7"></i></button>' +
     					'<button type="button" class="btn btn-outline bg-danger text-danger-800 btn-sm" ' + 
 		    				'onClick="SettingManager._delete(' + row.id + ')"><i class="icon-trash"></i></button>'

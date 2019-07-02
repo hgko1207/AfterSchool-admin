@@ -4,6 +4,10 @@ import lombok.Data;
 
 @Data
 public class ApplySearchParam {
+	
+	private String subjectId;
 
 	private String school;
+	
+	private String grade;
 }
