@@ -59,6 +59,15 @@ input, select, textarea{ font-size:12px; font-family:myFirstFont, NanumGothic,Ve
 	padding-top: 0.5rem;
 }
 
+#studentTable_wrapper .dataTables_paginate {
+	float: none;
+	text-align: center;
+}
+
+div.dt-buttons {
+	margin-bottom: 0;
+} 
+
 .datatable-footer {
     border-top: 1px solid #b7b7b7 !important;
     margin-top: -1px !important;

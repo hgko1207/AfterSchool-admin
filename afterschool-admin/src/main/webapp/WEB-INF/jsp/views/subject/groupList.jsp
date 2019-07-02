@@ -47,7 +47,7 @@
 				</div>
 				<div class="card-body">
 					<table class="table table-bordered table-striped table-hover" id="subjectGroupTable">
-						<thead class="text-center">
+						<thead class="text-center bg-slate-400">
 							<tr>
 								<th>번호</th>
 								<th>이름</th>
@@ -117,11 +117,11 @@ var SettingManager = function() {
 		    }, 
 		    { data: "description" }, 
 		    {
-		    	width: "16%",
+		    	width: "14%",
 		    	render: function(data, type, row, meta) {
-		    		return '<button type="button" class="btn bg-primary-400 btn-sm mr-2" ' +
+		    		return '<button type="button" class="btn btn-outline bg-primary text-primary-800 btn-sm mr-1" ' +
 		    			'onClick="SettingManager.modal(' + row.id + ')"><i class="icon-pencil7"></i></button>' +
-    					'<button type="button" class="btn bg-danger-400 btn-sm" ' + 
+    					'<button type="button" class="btn btn-outline bg-danger text-danger-800 btn-sm" ' + 
 		    				'onClick="SettingManager._delete(' + row.id + ')"><i class="icon-trash"></i></button>'
 		    	}
 		    }]

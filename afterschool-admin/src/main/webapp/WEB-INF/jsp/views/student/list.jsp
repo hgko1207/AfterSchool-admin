@@ -37,11 +37,11 @@
 						</c:forEach>
 					</select>
 				</div>
-				<button id="searchBtn" class="btn bg-teal-400"><i class="icon-search4 mr-2"></i> 조 회</button>
+				<button id="searchBtn" class="btn bg-info-600"><i class="icon-search4 mr-2"></i> 조 회</button>
 			</div>
 			
 			<table class="table table-bordered table-striped table-hover" id="studentTable">
-				<thead class="text-center">
+				<thead class="text-center bg-slate-400">
 					<tr>
 						<th>번호</th>
 						<th>이름</th>
@@ -50,6 +50,8 @@
 						<th>학급(반)</th>
 						<th>번호</th>
 						<th>연락처</th>
+						<th>개인정보동의</th>
+						<th>주민번호</th>
 						<th>Actions</th>
 					</tr>
 				</thead>
@@ -137,6 +139,8 @@
 </div>
 
 <script>
+/*  */
+
 var StudentManager = function() {
 	var DataTable = {
 		ele: "#studentTable",
@@ -165,17 +169,27 @@ var StudentManager = function() {
 		    		return row.number + " 번";
 		    	}
 		    },
-		    { data: "tel" },
-		    {
-		    	width: "8 %",
+		    { 
 		    	render: function(data, type, row, meta) {
-		    		return '<button type="button" class="btn bg-primary-400 btn-sm" ' +
+	    			return row.tel.replace(/(^02.{0}|^01.{1}|[0-9]{3})([0-9]+)([0-9]{4})/,"$1-$2-$3");
+	    		} 
+		    },
+		    { 
+		    	render: function(data, type, row, meta) {
+	    			return row.agree ? "동의" : "미동의";
+	    		} 
+		 	},
+		    { data: "residentNumber" },
+		    {
+		    	width: "6%",
+		    	render: function(data, type, row, meta) {
+		    		return '<button type="button" class="btn btn-outline bg-primary text-primary-800 btn-sm" ' +
 		    			'onClick="StudentManager.modal(' + row.id + ')"><i class="icon-pencil7"></i></button>'
 		    	}
 		    }]
 		},
 		init: function() {
-			this.table = Datatables.action(this.ele, this.option, " _TOTAL_ 명의 학생이 있습니다.");
+			this.table = Datatables.custom(this.ele, this.option, " _TOTAL_ 명의 학생이 있습니다.");
 			this.search();
 		},
 		search: function() {

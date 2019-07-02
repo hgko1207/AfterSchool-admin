@@ -56,6 +56,13 @@ public class Student implements Domain {
 	@Column(length = 20)
 	private String tel;
 	
+	/** 개인정보제공 동의 */
+	private boolean agree;
+	
+	/** 주민등록번호 */
+	@Column(length = 15)
+	private String residentNumber;
+	
 	@Enumerated(EnumType.STRING)
 	@Column(nullable = false)
 	private TargetType targetType;

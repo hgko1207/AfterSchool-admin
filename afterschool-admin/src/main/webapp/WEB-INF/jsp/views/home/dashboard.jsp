@@ -8,24 +8,68 @@
 </c:import>
 
 <div class="content">
-	<div class="row">
-		<div class="col-md-6">
-			<div class="card">
-				<div class="card-header bg-white">
-					<h6 class="card-title">
-						<i class="icon-cog3 mr-2"></i>기본 설정
-					</h6>
-				</div>
-			</div>
-		</div>
-		<div class="col-md-6">
-			<div class="card">
-				<div class="card-header bg-white">
-					<h6 class="card-title">
-						<i class="icon-cog3 mr-2"></i>기본 설정
-					</h6>
-				</div>
-			</div>
-		</div>
+	<%-- <div class="mb-3">
+		<h6 class="mb-0 font-weight-semibold">
+			Simple statistics
+		</h6>
+		<span class="text-muted d-block">통계 수치를 확인하세요.</span>
 	</div>
+	<div class="row">
+		<div class="col-md-3">
+			<div class="card card-body">
+				<div class="media">
+					<div class="mr-3 align-self-center">
+						<i class="icon-users icon-3x text-success-400"></i>
+					</div>
+
+					<div class="media-body text-right">
+						<h3 class="font-weight-semibold mb-0">${students}</h3>
+						<span class="text-uppercase font-size-sm text-muted">학생 수</span>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-3">
+			<div class="card card-body">
+				<div class="media">
+					<div class="mr-3 align-self-center">
+						<i class="icon-make-group icon-3x text-indigo-400"></i>
+					</div>
+
+					<div class="media-body text-right">
+						<h3 class="font-weight-semibold mb-0">${subjectGroups}</h3>
+						<span class="text-uppercase font-size-sm text-muted">과목 그룹 수</span>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-3">
+			<div class="card card-body">
+				<div class="media">
+					<div class="mr-3 align-self-center">
+						<i class="icon-books icon-3x text-blue-400"></i>
+					</div>
+
+					<div class="media-body text-right">
+						<h3 class="font-weight-semibold mb-0">${subjects}</h3>
+						<span class="text-uppercase font-size-sm text-muted">수강 과목 수</span>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-3">
+			<div class="card card-body">
+				<div class="media">
+					<div class="mr-3 align-self-center">
+						<i class="icon-database-add icon-3x text-danger-400"></i>
+					</div>
+
+					<div class="media-body text-right">
+						<h3 class="font-weight-semibold mb-0">${applies}</h3>
+						<span class="text-uppercase font-size-sm text-muted">수강 신청 수</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div> --%>
 </div>

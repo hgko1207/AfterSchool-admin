@@ -29,11 +29,11 @@
 						</c:forEach>
 					</select>
 				</div>
-				<button id="searchBtn" class="btn bg-teal-400"><i class="icon-search4 mr-2"></i> 조 회</button>
+				<button id="searchBtn" class="btn bg-info-600"><i class="icon-search4 mr-2"></i> 조 회</button>
 			</div>
 			
 			<table class="table table-bordered table-striped table-hover" id="subjectTable">
-				<thead class="text-center">
+				<thead class="text-center bg-slate-400">
 					<tr>
 						<th>번호</th>
 						<th>과목그룹</th>
@@ -41,10 +41,9 @@
 						<th>대상,<br>정원(명)</th>
 						<th>수강기간</th>
 						<th>유형</th>
-						<th>과목특징</th>
 						<th>강사명</th>
 						<th>재료비 및<br>교구비</th>
-						<th></th>
+						<th>Actions</th>
 					</tr>
 				</thead>
 				<tbody class="tbody-xs text-center"></tbody>
@@ -176,22 +175,19 @@ var SubjectManager = function() {
 		    	width: "8%",
 		    	data: "subjectGroup.name" 
 		    },{ 
-		    	width: "15%",
+		    	width: "20%",
 		    	data: "name" 
 		    },{
 		    	width: "8%",
 		    	data: "target" 
 		    },{
-		    	width: "10%",
+		    	width: "12%",
 		    	render: function(data, type, row, meta) {
 		    		return row.period + "<br>" + row.time;
 		    	}
 		    },{ 
-		    	width: "6%",
+		    	width: "8%",
 		    	data: "week" 
-		    },{ 
-		    	width: "22%",
-		    	data: "description" 
 		    },{ 
 		    	width: "8%",
 		    	data: "teacher"
@@ -199,11 +195,11 @@ var SubjectManager = function() {
 		    	width: "8%",
 		    	data: "costDesc" 
 		    },{
-		    	width: "9%",
+		    	width: "8%",
 		    	render: function(data, type, row, meta) {
-	    			return '<button type="button" class="btn bg-primary-400 btn-sm mr-2" ' +
-		    				'onClick="SubjectManager.modal(' + row.id + ')"><i class="icon-pencil7"></i></button>' +
-    					'<button type="button" class="btn bg-danger-400 btn-sm" ' + 
+    				return '<button type="button" class="btn btn-outline bg-primary text-primary-800 btn-sm mr-1" ' +
+			    			'onClick="SubjectManager.modal(' + row.id + ')"><i class="icon-pencil7"></i></button>' +
+    					'<button type="button" class="btn btn-outline bg-danger text-danger-800 btn-sm" ' + 
 		    				'onClick="SubjectManager._delete(' + row.id + ')"><i class="icon-trash"></i></button>'
 		    	}
 		    }]

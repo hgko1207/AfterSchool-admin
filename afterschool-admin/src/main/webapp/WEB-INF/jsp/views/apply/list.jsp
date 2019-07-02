@@ -29,11 +29,11 @@
 						</c:forEach>
 					</select>
 				</div>
-				<button id="searchBtn" class="btn bg-teal-400"><i class="icon-search4 mr-2"></i> 조 회</button>
+				<button id="searchBtn" class="btn bg-info-600"><i class="icon-search4 mr-2"></i> 조 회</button>
 			</div>
 			
 			<table class="table table-bordered table-striped table-hover" id="applyTable">
-				<thead class="text-center">
+				<thead class="text-center bg-slate-400">
 					<tr>
 						<th>번호</th>
 						<th>과목</th>
@@ -43,7 +43,7 @@
 						<th>소속(학교 명)</th>
 						<th>학년</th>
 						<th>연락처</th>
-						<th></th>
+						<th>Actions</th>
 					</tr>
 				</thead>
 				<tbody class="tbody-xs text-center"></tbody>
@@ -77,12 +77,15 @@ var ApplyManager = function() {
 		    	render: function(data, type, row, meta) {
 		    		return row.student.grade + " 학년";
 		    	}
-		    },{ 
-		    	data: "student.tel" 
+		    },
+		    { 
+	    		render: function(data, type, row, meta) {
+	    			return row.student.tel.replace(/(^02.{0}|^01.{1}|[0-9]{3})([0-9]+)([0-9]{4})/,"$1-$2-$3");
+	    		} 
 		    },{
 		    	width: "5%",
 		    	render: function(data, type, row, meta) {
-		    		return '<button type="button" class="btn bg-primary-400 btn-sm" ' +
+	    			return '<button type="button" class="btn btn-outline bg-primary text-primary-800 btn-sm" ' +
 		    			'onClick="ApplyManager.modal(' + row.id + ')"><i class="icon-pencil7"></i></button>'
 		    	}
 		    }]
