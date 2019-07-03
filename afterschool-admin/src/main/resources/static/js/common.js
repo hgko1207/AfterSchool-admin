@@ -8,7 +8,6 @@ var CommonWidget = function() {
             return;
         }
     	
-    	// Initialize
         var $select = $('.form-control-select2').select2({
             minimumResultsForSearch: Infinity,
             width: '100%'
@@ -19,17 +18,14 @@ var CommonWidget = function() {
             width: '90'
         });
         
-        // Select with search
         $('.select-search').select2();
         
-        // Trigger value change when selection is made
         $select.on('change', function() {
             $(this).trigger('blur');
         });
     };
     
     var _componentSwal = function() {
-    	/** Sweet Alerts Defaults */
     	swal.setDefaults({
 	        buttonsStyling: false,
 	        confirmButtonClass: 'btn btn-primary',
@@ -52,9 +48,7 @@ var CommonWidget = function() {
 				} 
 			} catch(e) { 
 				alert(e.message); 
-			} finally {
-				
-			} 
+			} finally {} 
 			return obj; 
 		}
     };

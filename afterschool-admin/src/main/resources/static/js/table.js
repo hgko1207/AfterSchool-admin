@@ -107,8 +107,7 @@ var Datatables = {
 		return table;
 	},
 	rowsAdd: function(table, url, param) {
-		this.UIBlock("body");
-		
+		this.UIBlock("#list_content");
 		table.clear().draw();
 		
 		$.ajax({
@@ -117,7 +116,7 @@ var Datatables = {
 			data: JSON.stringify(param),
 			contentType: "application/json",
 			success: function(data) {
-				$("body").unblock();
+				$("#list_content").unblock();
 				table.rows.add(data).draw();
 		   	}
 		});

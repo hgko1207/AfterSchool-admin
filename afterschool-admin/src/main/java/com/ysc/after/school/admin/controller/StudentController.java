@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ysc.after.school.admin.domain.db.Student;
+import com.ysc.after.school.admin.domain.db.Student.TargetType;
 import com.ysc.after.school.admin.domain.param.StudentSearchParam;
 import com.ysc.after.school.admin.service.SchoolService;
 import com.ysc.after.school.admin.service.StudentService;
@@ -86,6 +87,11 @@ public class StudentController {
 		temp.setClassType(student.getClassType());
 		temp.setNumber(student.getNumber());
 		temp.setTel(student.getTel());
+		if (student.getSchool().contains("초등")) {
+			temp.setTargetType(TargetType.초등);
+		} else {
+			temp.setTargetType(TargetType.중등);
+		}
 		
 		if (studentService.update(temp)) {
 			return new ResponseEntity<>(HttpStatus.OK);

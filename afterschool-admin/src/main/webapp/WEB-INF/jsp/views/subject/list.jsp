@@ -9,7 +9,7 @@
 </c:import>
 
 <div class="content">
-	<div class="card mb-0">
+	<div id="list_content" class="card mb-0">
 		<div class="card-header header-elements-inline bg-white">
 			<h4 class="card-title font-weight-bold">
 				<i class="icon-list mr-2"></i>수강 과목 목록

@@ -5,7 +5,6 @@
  * ---------------------------------------------------------------------------- */
 
 var LoginValidation = function() {
-	
 	// Uniform
     var _componentUniform = function() {
         if (!$().uniform) {
@@ -44,24 +43,19 @@ var LoginValidation = function() {
                 label.addClass('validation-valid-label').text('입력 확인.'); // remove to hide Success message
             	//label.removeClass('validation-invalid-label');
             },
-
-            // Different components require proper error label placement
             errorPlacement: function(error, element) {
                 // Unstyled checkboxes, radios
                 if (element.parents().hasClass('form-check')) {
                     error.appendTo(element.parents('.form-check').parent());
                 }
-
                 // Input with icons and Select2
                 else if (element.parents().hasClass('form-group-feedback') || element.hasClass('select2-hidden-accessible')) {
                     error.appendTo(element.parent());
                 }
-
                 // Input group, styled file input
                 else if (element.parent().is('.uniform-uploader, .uniform-select') || element.parents().hasClass('input-group')) {
                     error.appendTo(element.parent().parent());
                 }
-
                 // Other elements
                 else {
                     error.insertAfter(element);

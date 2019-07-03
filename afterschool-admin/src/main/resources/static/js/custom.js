@@ -11,9 +11,6 @@ function maxLengthCheck(object){
 
 /**
  * 등록 공통 기능
- * @param form
- * @param name
- * @param Datatable
  * @returns
  */
 function registCommon(url, object, name, SettingManager) {
@@ -56,11 +53,6 @@ function registToMove(form, name, href) {
 
 /**
  * 모달에서 수정 공통 기능
- * @param url
- * @param object
- * @param name
- * @param Datatable
- * @param modalId
  * @returns
  */
 function updateModalCommon(url, object, name, Datatable, modalId) {
@@ -86,9 +78,6 @@ function updateModalCommon(url, object, name, Datatable, modalId) {
 
 /**
  * 삭제 공통 기능
- * @param id
- * @param name
- * @param Datatable
  * @returns
  */
 function deleteCommon(url, id, name, Datatable, title) {

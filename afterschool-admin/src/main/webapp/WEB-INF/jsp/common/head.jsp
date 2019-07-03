@@ -25,7 +25,6 @@
 	<!-- /global stylesheets -->
 	
 	<link href="${contextName}/css/common.css" rel="stylesheet" type="text/css">
-	<link href="${contextName}/css/table.css" rel="stylesheet" type="text/css">
 	
 	<!-- Core JS files -->
 	<script src="${contextName}/limitless/js/main/jquery.min.js"></script>

@@ -117,7 +117,7 @@ var SettingManager = function() {
 		    }, 
 		    { data: "description" }, 
 		    {
-		    	width: "12%",
+		    	width: "14%",
 		    	render: function(data, type, row, meta) {
 		    		return '<button type="button" class="btn btn-outline bg-primary text-primary-800 btn-sm" ' +
 		    			'onClick="SettingManager.modal(' + row.id + ')"><i class="icon-pencil7"></i></button>' +
