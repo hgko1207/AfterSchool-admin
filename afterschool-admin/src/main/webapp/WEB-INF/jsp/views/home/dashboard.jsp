@@ -8,7 +8,7 @@
 </c:import>
 
 <div class="content">
-	<%-- <div class="mb-3">
+	<div class="mb-3">
 		<h6 class="mb-0 font-weight-semibold">
 			Simple statistics
 		</h6>
@@ -71,5 +71,5 @@
 				</div>
 			</div>
 		</div>
-	</div> --%>
+	</div>
 </div>

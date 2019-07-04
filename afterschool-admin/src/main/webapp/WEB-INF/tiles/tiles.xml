@@ -19,7 +19,7 @@
 		<put-attribute name="content" value="/WEB-INF/jsp/views/user/{1}.jsp" />
     </definition>
     
-    <!-- 학생등록 -->
+    <!-- 학생관리 -->
 	<definition name="student/*" extends="layout">
 		<put-attribute name="content" value="/WEB-INF/jsp/views/student/{1}.jsp" />
     </definition>
@@ -29,8 +29,13 @@
 		<put-attribute name="content" value="/WEB-INF/jsp/views/apply/{1}.jsp" />
     </definition>
     
-    <!-- 수강신청 -->
+    <!-- 과목관리 -->
 	<definition name="subject/*" extends="layout">
 		<put-attribute name="content" value="/WEB-INF/jsp/views/subject/{1}.jsp" />
+    </definition>
+    
+    <!-- 데이터관리 -->
+	<definition name="setting/*" extends="layout">
+		<put-attribute name="content" value="/WEB-INF/jsp/views/setting/{1}.jsp" />
     </definition>
 </tiles-definitions>

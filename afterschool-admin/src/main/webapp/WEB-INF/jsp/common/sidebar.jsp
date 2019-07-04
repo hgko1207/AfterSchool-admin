@@ -58,6 +58,14 @@
 						</li>
 					</ul>
 				</li>
+				<li id="setting" class="nav-item nav-item-submenu">
+					<a href="#" class="nav-link"><i class="icon-cog4"></i> <span>데이터 관리</span></a>
+					<ul class="nav nav-group-sub" data-submenu-title="Layouts">
+						<li id="setting_school" class="nav-item"><a href="${pageContext.request.contextPath}/setting/school" class="nav-link">
+							<i class="icon-city"></i><span>학교 관리</span></a>
+						</li>
+					</ul>
+				</li>
 			</ul>
 		</div>
 	</div>

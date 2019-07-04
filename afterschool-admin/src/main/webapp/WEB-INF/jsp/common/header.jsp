@@ -27,9 +27,11 @@
 			</li>
 		</ul>
 		
-		<div class="navbar-title ml-md-3 mr-md-auto">
+		<div class="navbar-title ml-md-3">
 			<span class="text-center">방과후 학교 관리 시스템</span>
 		</div>
+		
+		<span class="badge bg-success ml-md-4 mr-md-auto">Open</span>
 		
 		<ul class="navbar-nav">
 			<li class="nav-item dropdown dropdown-user">
