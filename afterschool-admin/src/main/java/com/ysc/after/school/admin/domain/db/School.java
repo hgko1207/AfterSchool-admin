@@ -4,14 +4,10 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.Table;
 
-import com.ysc.after.school.admin.domain.Domain;
-
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 
 /**
@@ -23,11 +19,8 @@ import lombok.Getter;
 @Entity
 @Table(name = "tb_school")
 @Data
-public class School implements Domain {
-
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+@EqualsAndHashCode(callSuper = false)
+public class School extends AbstractDomain {
 	
 	/** 이름 */
 	@Column(nullable = false, length = 20)
@@ -42,8 +35,8 @@ public class School implements Domain {
 	
 	@Getter
 	public enum SchoolType {
-		Elementary("초등학교"),
-		Middle("중학교");
+		초등학교("초등학교"),
+		중학교("중학교");
 		
 		private String name;
 		

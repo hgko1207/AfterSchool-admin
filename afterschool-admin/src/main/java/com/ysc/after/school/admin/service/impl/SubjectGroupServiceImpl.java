@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ysc.after.school.admin.domain.db.SubjectGroup;
+import com.ysc.after.school.admin.domain.param.SearchParam;
 import com.ysc.after.school.admin.repository.SubjectGroupRepository;
 import com.ysc.after.school.admin.service.SubjectGroupService;
 
@@ -54,5 +55,10 @@ public class SubjectGroupServiceImpl implements SubjectGroupService {
 	@Override
 	public SubjectGroup get(Integer id) {
 		return subjectGroupRepository.findById(id).get();
+	}
+
+	@Override
+	public List<SubjectGroup> getList(SearchParam param) {
+		return getList();
 	}
 }

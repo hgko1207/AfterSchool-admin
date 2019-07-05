@@ -34,8 +34,12 @@
 		<put-attribute name="content" value="/WEB-INF/jsp/views/subject/{1}.jsp" />
     </definition>
     
+    <definition name="subject/*/*" extends="layout">
+		<put-attribute name="content" value="/WEB-INF/jsp/views/subject/{1}/{2}.jsp" />
+    </definition>
+    
     <!-- 데이터관리 -->
-	<definition name="setting/*" extends="layout">
-		<put-attribute name="content" value="/WEB-INF/jsp/views/setting/{1}.jsp" />
+	<definition name="settings/*" extends="layout">
+		<put-attribute name="content" value="/WEB-INF/jsp/views/settings/{1}.jsp" />
     </definition>
 </tiles-definitions>

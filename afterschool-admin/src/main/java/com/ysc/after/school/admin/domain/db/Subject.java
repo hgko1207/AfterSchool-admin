@@ -1,26 +1,18 @@
 package com.ysc.after.school.admin.domain.db;
 
-import java.time.LocalDateTime;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
-
-import com.ysc.after.school.admin.domain.Domain;
 import com.ysc.after.school.admin.domain.db.Student.TargetType;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 
 /**
@@ -32,12 +24,9 @@ import lombok.Getter;
 @Entity
 @Table(name = "tb_subject")
 @Data
-public class Subject implements Domain {
+@EqualsAndHashCode(callSuper = false)
+public class Subject extends AbstractDomain {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
-	
 	/** 이름 */
 	@Column(nullable = false, length = 255)
 	private String name;
@@ -106,12 +95,6 @@ public class Subject implements Domain {
 	
 	/** 순서지정 */
 	private int ordered;
-	
-	@CreationTimestamp
-	private LocalDateTime createDate;
-	
-	@UpdateTimestamp
-	private LocalDateTime updateDate;
 	
 	@Transient
 	private String target;

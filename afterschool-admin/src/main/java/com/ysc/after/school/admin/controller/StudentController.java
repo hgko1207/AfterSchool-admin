@@ -1,6 +1,5 @@
 package com.ysc.after.school.admin.controller;
 
-import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,17 +7,13 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ysc.after.school.admin.domain.db.Student;
 import com.ysc.after.school.admin.domain.db.Student.TargetType;
 import com.ysc.after.school.admin.domain.param.StudentSearchParam;
+import com.ysc.after.school.admin.service.CRUDService;
 import com.ysc.after.school.admin.service.SchoolService;
 import com.ysc.after.school.admin.service.StudentService;
 
@@ -30,13 +25,17 @@ import com.ysc.after.school.admin.service.StudentService;
  */
 @Controller
 @RequestMapping("student")
-public class StudentController {
+public class StudentController extends AbstractController<Student, StudentSearchParam, Integer> {
 	
 	@Autowired
 	private SchoolService schoolService;
 	
 	@Autowired
 	private StudentService studentService;
+	
+	public StudentController(CRUDService<Student, StudentSearchParam, Integer> crudService) {
+		super(crudService);
+	}
 
 	/**
 	 * 학생 조회 화면
@@ -53,33 +52,11 @@ public class StudentController {
 	}
 	
 	/**
-	 * 학생 조회 기능
-	 * @param param
-	 */
-	@PostMapping("search")
-	@ResponseBody
-	public List<Student> search(@RequestBody StudentSearchParam param) {
-		return studentService.getList(param);
-	}
-	
-	/**
-	 * 학생 정보 불러오기
-	 * @param id
-	 * @return
-	 */
-	@GetMapping("get")
-	@ResponseBody 
-	public Student get(int id) {
-		return studentService.get(id);
-	}
-	
-	/**
 	 * 학생 정보 수정
 	 * @param student
 	 * @return
 	 */
-	@PutMapping("update")
-	@ResponseBody
+	@Override
 	public ResponseEntity<?> update(Student student) {
 		Student temp = studentService.get(student.getId());
 		temp.setSchool(student.getSchool());
@@ -94,21 +71,6 @@ public class StudentController {
 		}
 		
 		if (studentService.update(temp)) {
-			return new ResponseEntity<>(HttpStatus.OK);
-		}
-		
-		return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-	}
-	
-	/**
-	 * 학생 삭제
-	 * @param id
-	 * @return
-	 */
-	@DeleteMapping("delete")
-	@ResponseBody
-	public ResponseEntity<?> delete(int id) {
-		if (studentService.delete(id)) {
 			return new ResponseEntity<>(HttpStatus.OK);
 		}
 		

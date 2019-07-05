@@ -2,6 +2,8 @@ package com.ysc.after.school.admin.service.impl;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,6 +12,7 @@ import com.ysc.after.school.admin.domain.param.SubjectSearchParam;
 import com.ysc.after.school.admin.repository.SubjectRepository;
 import com.ysc.after.school.admin.service.SubjectService;
 
+@Transactional
 @Service
 public class SubjectServiceImpl implements SubjectService {
 

@@ -2,13 +2,17 @@ package com.ysc.after.school.admin.service.impl;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.ysc.after.school.admin.domain.DomainParam;
 import com.ysc.after.school.admin.domain.db.Setting;
 import com.ysc.after.school.admin.repository.SettingRepository;
 import com.ysc.after.school.admin.service.SettingService;
 
+@Transactional
 @Service
 public class SettingServiceImpl implements SettingService {
 
@@ -51,6 +55,11 @@ public class SettingServiceImpl implements SettingService {
 
 	private boolean isNew(Setting domain) {
 		return !settingRepository.existsById(domain.getId());
+	}
+
+	@Override
+	public List<Setting> getList(DomainParam param) {
+		return getList();
 	}
 	
 }

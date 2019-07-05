@@ -39,7 +39,7 @@
 				<li id="subject" class="nav-item nav-item-submenu">
 					<a href="#" class="nav-link"><i class="icon-archive"></i> <span>과목 관리</span></a>
 					<ul class="nav nav-group-sub" data-submenu-title="Layouts">
-						<li id="subject_groupList" class="nav-item"><a href="${pageContext.request.contextPath}/subject/groupList" class="nav-link">
+						<li id="subject_group_list" class="nav-item"><a href="${pageContext.request.contextPath}/subject/group/list" class="nav-link">
 							<i class="icon-list"></i><span>과목 그룹 관리</span></a>
 						</li>
 						<li id="subject_list" class="nav-item"><a href="${pageContext.request.contextPath}/subject/list" class="nav-link">
@@ -58,14 +58,14 @@
 						</li>
 					</ul>
 				</li>
-				<li id="setting" class="nav-item nav-item-submenu">
+				<%-- <li id="settings" class="nav-item nav-item-submenu">
 					<a href="#" class="nav-link"><i class="icon-cog4"></i> <span>데이터 관리</span></a>
 					<ul class="nav nav-group-sub" data-submenu-title="Layouts">
-						<li id="setting_school" class="nav-item"><a href="${pageContext.request.contextPath}/setting/school" class="nav-link">
+						<li id="settings_school" class="nav-item"><a href="${pageContext.request.contextPath}/settings/school" class="nav-link">
 							<i class="icon-city"></i><span>학교 관리</span></a>
 						</li>
 					</ul>
-				</li>
+				</li> --%>
 			</ul>
 		</div>
 	</div>
@@ -75,11 +75,17 @@
 	var pathName = this.location.pathname;
 	var menuName = pathName.split("/")[2];
     var subMenuName = pathName.split("/")[3];
+    var subsubMenuName = pathName.split("/")[4];
     
-    if (subMenuName) {
-		$("li#" + menuName).addClass("nav-item-expanded nav-item-open");
-		$("li#" + menuName + "_" + subMenuName).children().addClass("active");
-	} else {
-		 $("li#" + menuName).children().addClass("active");
-	}
+    if (subsubMenuName) {
+    	$("li#" + menuName).addClass("nav-item-expanded nav-item-open");
+		$("li#" + menuName + "_" + subMenuName + "_" + subsubMenuName).children().addClass("active");
+    } else {
+   	  	if (subMenuName) {
+   			$("li#" + menuName).addClass("nav-item-expanded nav-item-open");
+   			$("li#" + menuName + "_" + subMenuName).children().addClass("active");
+   		} else {
+   			 $("li#" + menuName).children().addClass("active");
+   		}
+    }
 </script>

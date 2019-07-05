@@ -10,7 +10,6 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import com.ysc.after.school.admin.domain.Domain;
-import com.ysc.after.school.admin.domain.db.Student.TargetType;
 
 import lombok.Data;
 
@@ -46,7 +45,7 @@ public class Setting implements Domain {
 	private StatusType status;
 	
 	public enum SettingType {
-		MOBILE, GUIDANCE
+		MOBILE, GUIDANCE, SCHOOL
 	}
 	
 	public enum StatusType {

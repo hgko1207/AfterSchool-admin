@@ -33,7 +33,7 @@
 						</div>
 					</div>
 					<div class="card-footer bg-white d-flex justify-content-center align-items-center">
-						<button type="submit" class="btn bg-teal-400">&nbsp;&nbsp;<i class="icon-plus-circle2 mr-2"></i>그룹 추가&nbsp;&nbsp;</button>
+						<button type="submit" class="btn bg-teal-400 px-3"><i class="icon-plus-circle2 mr-2"></i>그룹 추가</button>
 					</div>
 				</form>
 			</div>

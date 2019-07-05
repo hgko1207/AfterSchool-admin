@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.ysc.after.school.admin.domain.DomainParam;
 import com.ysc.after.school.admin.domain.db.User;
 import com.ysc.after.school.admin.repository.UserRepository;
 import com.ysc.after.school.admin.service.UserService;
@@ -56,5 +57,10 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public User get(Integer id) {
 		return userRepository.findById(id).get();
+	}
+
+	@Override
+	public List<User> getList(DomainParam param) {
+		return getList();
 	}
 }

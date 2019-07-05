@@ -1,6 +1,5 @@
 package com.ysc.after.school.admin.controller;
 
-import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,19 +7,15 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.ysc.after.school.admin.domain.db.Subject;
-import com.ysc.after.school.admin.domain.db.SubjectGroup;
 import com.ysc.after.school.admin.domain.db.Student.TargetType;
+import com.ysc.after.school.admin.domain.db.Subject;
 import com.ysc.after.school.admin.domain.db.Subject.GradeType;
 import com.ysc.after.school.admin.domain.param.SubjectSearchParam;
+import com.ysc.after.school.admin.service.CRUDService;
 import com.ysc.after.school.admin.service.SubjectGroupService;
 import com.ysc.after.school.admin.service.SubjectService;
 
@@ -32,7 +27,7 @@ import com.ysc.after.school.admin.service.SubjectService;
  */
 @Controller
 @RequestMapping("subject")
-public class SubjectController {
+public class SubjectController extends AbstractController<Subject, SubjectSearchParam, Integer> {
 	
 	@Autowired
 	private SubjectGroupService subjectGroupService;
@@ -40,78 +35,8 @@ public class SubjectController {
 	@Autowired
 	private SubjectService subjectService;
 
-	/**
-	 * 과목 그룹 화면
-	 * @param model
-	 */
-	@GetMapping("groupList")
-	public void groupList(Model model) {
-	}
-	
-	/**
-	 * 과목 그룹 조회
-	 * @return
-	 */
-	@PostMapping("group/search")
-	@ResponseBody 
-	public ResponseEntity<?> searchGroup() {
-		return new ResponseEntity<>(subjectGroupService.getList(), HttpStatus.OK);
-	}
-	
-	/**
-	 * 과목 그룹 정보 불러오기
-	 * @param id
-	 * @return
-	 */
-	@GetMapping("group/get")
-	@ResponseBody 
-	public SubjectGroup getSubjectGroup(int id) {
-		return subjectGroupService.get(id);
-	}
-	
-	/**
-	 * 과목 그룹 등록
-	 * @param subjectGroup
-	 * @return
-	 */
-	@PostMapping("group/regist")
-	@ResponseBody
-	public ResponseEntity<?> registSubjectgroup(SubjectGroup subjectGroup) {
-		if (subjectGroupService.regist(subjectGroup)) {
-			return new ResponseEntity<>(HttpStatus.OK);
-		}
-		
-		return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-	}
-	
-	/**
-	 * 과목 그룹 수정
-	 * @param subjectGroup
-	 * @return
-	 */
-	@PutMapping("group/update")
-	@ResponseBody
-	public ResponseEntity<?> updateSubjectgroup(SubjectGroup subjectGroup) {
-		if (subjectGroupService.update(subjectGroup)) {
-			return new ResponseEntity<>(HttpStatus.OK);
-		}
-		
-		return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-	}
-	
-	/**
-	 * 과목 그룹 삭제
-	 * @param id
-	 * @return
-	 */
-	@DeleteMapping("group/delete")
-	@ResponseBody
-	public ResponseEntity<?> deleteSubjectgroup(int id) {
-		if (subjectGroupService.delete(id)) {
-			return new ResponseEntity<>(HttpStatus.OK);
-		}
-		
-		return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+	public SubjectController(CRUDService<Subject, SubjectSearchParam, Integer> crudService) {
+		super(crudService);
 	}
 	
 	/**
@@ -126,28 +51,16 @@ public class SubjectController {
 	}
 	
 	/**
-	 * 과목 조회
+	 * 과목 조회List<Subject>
 	 * @param param
 	 * @return
 	 */
-	@PostMapping("search")
-	@ResponseBody 
-	public List<Subject> search(@RequestBody SubjectSearchParam param) {
-		return subjectService.getList(param).stream().map(data -> {
+	@Override
+	public ResponseEntity<?> search(@RequestBody SubjectSearchParam param) {
+		return new ResponseEntity<>(subjectService.getList(param).stream().map(data -> {
 			data.setTarget(data.getTargetType().getName() + " " + data.getGradeType().getName() + "<br>(" + data.getFixedNumber() + ")");
 			return data;
-		}).collect(Collectors.toList());
-	}
-	
-	/**
-	 * 과목 정보 불러오기
-	 * @param id
-	 * @return
-	 */
-	@GetMapping("get")
-	@ResponseBody 
-	public Subject get(int id) {
-		return subjectService.get(id);
+		}).collect(Collectors.toList()), HttpStatus.OK);
 	}
 	
 	/**
@@ -165,8 +78,7 @@ public class SubjectController {
 	 * 과목 등록 화면
 	 * @param subject
 	 */
-	@PostMapping("regist")
-	@ResponseBody
+	@Override
 	public ResponseEntity<?> regist(Subject subject) {
 		subject.setApplyStartTime("2019-07-01");
 		subject.setApplyEndTime("2019-07-05");
@@ -185,38 +97,22 @@ public class SubjectController {
 	 * @param subject
 	 * @return
 	 */
-	@PutMapping("update")
-	@ResponseBody
+	@Override
 	public ResponseEntity<?> update(Subject subject) {
-		Subject temp = subjectService.get(subject.getId());
-		temp.setSubjectGroup(subjectGroupService.get(subject.getGroupId()));
-		temp.setTeacher(subject.getTeacher());
-		temp.setTargetType(subject.getTargetType());
-		temp.setGradeType(subject.getGradeType());
-		temp.setFixedNumber(subject.getFixedNumber());
-		temp.setPeriod(subject.getPeriod());
-		temp.setTime(subject.getTime());
-		temp.setWeek(subject.getWeek());
-		temp.setCostDesc(subject.getCostDesc());
-		temp.setLocation(subject.getLocation());
-		temp.setDescription(subject.getDescription());
+		Subject result = subjectService.get(subject.getId());
+		result.setSubjectGroup(subjectGroupService.get(subject.getGroupId()));
+		result.setTeacher(subject.getTeacher());
+		result.setTargetType(subject.getTargetType());
+		result.setGradeType(subject.getGradeType());
+		result.setFixedNumber(subject.getFixedNumber());
+		result.setPeriod(subject.getPeriod());
+		result.setTime(subject.getTime());
+		result.setWeek(subject.getWeek());
+		result.setCostDesc(subject.getCostDesc());
+		result.setLocation(subject.getLocation());
+		result.setDescription(subject.getDescription());
 		
-		if (subjectService.update(temp)) {
-			return new ResponseEntity<>(HttpStatus.OK);
-		}
-		
-		return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-	}
-	
-	/**
-	 * 과목 삭제
-	 * @param id
-	 * @return
-	 */
-	@DeleteMapping("delete")
-	@ResponseBody
-	public ResponseEntity<?> delete(int id) {
-		if (subjectService.delete(id)) {
+		if (subjectService.update(result)) {
 			return new ResponseEntity<>(HttpStatus.OK);
 		}
 		

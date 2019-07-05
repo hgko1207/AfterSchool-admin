@@ -2,13 +2,17 @@ package com.ysc.after.school.admin.service.impl;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.ysc.after.school.admin.domain.DomainParam;
 import com.ysc.after.school.admin.domain.db.School;
 import com.ysc.after.school.admin.repository.SchoolRepository;
 import com.ysc.after.school.admin.service.SchoolService;
 
+@Transactional
 @Service
 public class SchoolServiceImpl implements SchoolService {
 
@@ -51,6 +55,11 @@ public class SchoolServiceImpl implements SchoolService {
 
 	private boolean isNew(School domain) {
 		return !schoolRepository.existsById(domain.getId());
+	}
+
+	@Override
+	public List<School> getList(DomainParam param) {
+		return getList();
 	}
 	
 }

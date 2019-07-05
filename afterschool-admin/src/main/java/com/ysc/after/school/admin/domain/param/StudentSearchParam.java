@@ -1,5 +1,7 @@
 package com.ysc.after.school.admin.domain.param;
 
+import com.ysc.after.school.admin.domain.DomainParam;
+
 import lombok.Data;
 
 /**
@@ -9,7 +11,7 @@ import lombok.Data;
  *
  */
 @Data
-public class StudentSearchParam {
+public class StudentSearchParam implements DomainParam {
 
 	private String school;
 	

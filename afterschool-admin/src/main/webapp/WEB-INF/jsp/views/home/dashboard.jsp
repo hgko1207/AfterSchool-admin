@@ -7,7 +7,7 @@
   	<c:param name="lastname" value="Dashboard" />
 </c:import>
 
-<div class="content">
+<%-- <div class="content">
 	<div class="mb-3">
 		<h6 class="mb-0 font-weight-semibold">
 			Simple statistics
@@ -72,4 +72,4 @@
 			</div>
 		</div>
 	</div>
-</div>
+</div> --%>
